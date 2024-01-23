@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+*{
+    margin: 0;
+    font-family: "Quantico", sans-serif;
+    list-style: none;
+    text-decoration: none;
+    position: relative;
+}
+@media screen and (max-width: 1920px)
+{
+    html {
+        height: 100%;
+        position: relative;
+    }
+    
+    body {
+        background-image: url(../Images/ksp.jpg);
+        background-repeat: no-repeat;
+        position: relative;
+        min-height: 100%;
+    }
+    
+    .nav {
+        font-weight: 700;
+        font-style: italic;    
+        width: 100%;
+        height: 80px;
+        position: relative;
+        backdrop-filter: blur(3px);
+    }
+    
+    .nav.left
+    {
+        position: absolute;
+        text-align: center;
+        line-height: 2.5vw + 20px;
+        font-size: 2.5vw;
+        width: 25%;
+        left: 0%;
+    }
+    
+    .nav.right
+    {
+        position: absolute;
+        line-height: 2.5vw + 20px;
+        font-size: 2.5vw;
+        width: 40%;
+        right: 1%;
+        display: flex;
+        justify-content: space-around;
+    }
+    
+    a:visited, a:active, a:hover, a:link {
+        color: white;
+        text-decoration-line: none;
+    }
+    
+    .Title {
+        position: absolute;
+        left: 8%;
+        top: 275px;
+        font-size: 6vw;
+        color: white;
+    }
+}
+@media screen and (min-width: 1921px) and (max-width: 2560px) 
+{
+    html {
+        height: 100%;
+    }
+    
+    body {
+        background-image: url(../Images/space.jpg);
+        background-repeat: no-repeat;
+        position: relative;
+        min-height: 100%;
+    }
+    
+    .nav {
+        font-weight: 700;
+        font-style: italic;
+        width: 100%;
+        height: 80px;
+        position: relative;
+        backdrop-filter: blur(3px);
+    }
+    
+    .nav.left
+    {
+        position: absolute;
+        text-align: center;
+        line-height: 2.5vw + 20px;
+        font-size: 2.5vw;
+        width: 25%;
+        left: 0%;
+    }
+    
+    .nav.right
+    {
+        position: absolute;
+        line-height: 2.5vw + 20px;
+        font-size: 2.5vw;
+        width: 40%;
+        right: 1%;
+        display: flex;
+        justify-content: space-around;
+    }
+    
+    a:visited, a:active, a:hover, a:link {
+        color: white;
+        text-decoration-line: none;
+    }
+    
+    .Title {
+        position: absolute;
+        left: 8%;
+        top: 275px;
+        font-size: 6vw;
+        color: white;
+    }
+}
+
+@media screen and (min-width: 2561px) and (max-width: 3440px)
+{
+    html {
+        height: 100%;
+        position: relative;
+    }
+    
+    body {
+        background-image: url(../Images/space1.jpg);
+        background-repeat: no-repeat;
+        position: relative;
+        min-height: 100%;
+    }
+    
+    .nav {
+        font-weight: 700;
+        font-style: italic;
+        width: 100%;
+        height: 80px;
+        position: relative;
+        backdrop-filter: blur(3px);
+    }
+    
+    .nav.left
+    {
+        position: absolute;
+        text-align: center;
+        line-height: 2.5vw + 20px;
+        font-size: 2.5vw;
+        width: 25%;
+        left: 0%;
+    }
+    
+    .nav.right
+    {
+        position: absolute;
+        line-height: 2.5vw + 20px;
+        font-size: 2.5vw;
+        width: 40%;
+        right: 1%;
+        display: flex;
+        justify-content: space-around;
+    }
+    
+    a:visited, a:active, a:hover, a:link {
+        color: white;
+        text-decoration-line: none;
+    }
+    
+    .Title {
+        position: absolute;
+        left: 8%;
+        top: 275px;
+        font-size: 6vw;
+        color: white;
+    }
+}
