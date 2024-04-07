@@ -4,16 +4,16 @@ function addElement(parentElement) {
     var videoDiv = document.createElement("div");
 
     videoDiv.style.width = "100%";
-    videoDiv.style.backgroundColor = "red";
     videoDiv.style.cursor = "se-resize";
+    videoDiv.style.padding = "3px 3px 3px 3px";
+    videoDiv.style.backgroundColor = "#141723";
 
-    videoContainer.style.backgroundColor = "white";
-    videoContainer.style.position = "absolute";
-    
     videoHandler.style.width = "100%";
     videoHandler.style.height = "50px";
-    videoHandler.style.backgroundColor = "blue";
     videoHandler.style.cursor = "grab";
+    videoHandler.style.backgroundColor = "blue";
+
+    videoContainer.style.position = "absolute";
 
     videoContainer.appendChild(videoHandler);
     videoContainer.appendChild(videoDiv);
@@ -95,4 +95,5 @@ function adjustAspectRatio(container) {
     var width = container.offsetWidth;
     var height = width * (9/16);
     container.style.height = height + 'px';
+    container.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/8bg7pfxxMAk?si=uwxqcAl3hi8bkX11" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
 }
