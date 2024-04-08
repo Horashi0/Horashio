@@ -49,7 +49,7 @@ function addElement(url, id) {
     videoHandler.style.width = "100%";
     videoHandler.style.height = "20px";
     videoHandler.style.cursor = "grab";
-    videoHandler.style.backgroundColor = "#0d0f17";
+    videoHandler.style.backgroundColor = "#D53155";
 
     videoContainer.style.position = "absolute";
 
@@ -66,6 +66,8 @@ function addElement(url, id) {
    setTimeout(function() {
     adjustAspectRatio(videoDiv, url);
    }, 0);
+
+   videoDiv.innerHTML = '<iframe width="100%" height="100%" src="' + url + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
     
     // Event listeners for dragging
     var initialX, initialY;
@@ -129,7 +131,6 @@ function adjustAspectRatio(container, url) {
     var width = container.offsetWidth;
     var height = width * (9/16);
     container.style.height = height + 'px';
-    container.innerHTML = '<iframe width="100%" height="100%" src="' + url + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
 }
 
 window.addEventListener('load', function() {
