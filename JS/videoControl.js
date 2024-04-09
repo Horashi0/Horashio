@@ -11,7 +11,7 @@ function addCheckboxListeners() {
 
 }
 
-function stopStream(id) {
+function stopStream(id) {var overlayDiv = document.createElement
     id = id + "Div";
     var videoContainer = document.getElementById(id);
     if (videoContainer) {
@@ -41,6 +41,16 @@ function addElement(url, id) {
     var videoHandler = document.createElement("div");
     var videoDiv = document.createElement("div");
 
+    var overlayDiv = document.createElement("div");
+    overlayDiv.style.position = "absolute";
+    overlayDiv.style.top = "0";
+    overlayDiv.style.left = "0";
+    overlayDiv.style.width = "100%";
+    overlayDiv.style.height = "100%";
+    overlayDiv.style.zIndex = "9999999";
+    
+
+
     videoDiv.style.width = "100%";
     videoDiv.style.cursor = "se-resize";
     videoDiv.style.padding = "0px 3px 3px 3px";
@@ -48,6 +58,7 @@ function addElement(url, id) {
 
     videoHandler.style.width = "100%";
     videoHandler.style.height = "20px";
+    videoHandler.style.padding = "0px 3px 0px 3px";
     videoHandler.style.cursor = "grab";
     videoHandler.style.backgroundColor = "#D53155";
 
@@ -74,6 +85,7 @@ function addElement(url, id) {
     var isDragging = false;
 
     videoHandler.addEventListener('mousedown', function(e) {
+        videoContainer.appendChild(overlayDiv)
         isDragging = true;
         initialX = e.clientX - videoContainer.offsetLeft;
         initialY = e.clientY - videoContainer.offsetTop;
@@ -94,6 +106,9 @@ function addElement(url, id) {
 
     document.addEventListener('mouseup', function(e) {
         if(isDragging) {
+            if(overlayDiv && overlayDiv.parentNode) {
+                overlayDiv.parentNode.removeChild(overlayDiv);
+            }
             isDragging = false;
             videoContainer.classList.remove('grabbed');            
             e.preventDefault();
@@ -107,6 +122,7 @@ function addElement(url, id) {
     videoDiv.addEventListener('mousedown', initResize, false);
 
     function initResize(e) {
+        videoContainer.appendChild(overlayDiv)
         videoContainer.style.zIndex = highestZIndex++;
         window.addEventListener('mousemove', Resize, false);
         window.addEventListener('mouseup', stopResize, false);
@@ -120,6 +136,9 @@ function addElement(url, id) {
     }
 
     function stopResize(e) {
+        if(overlayDiv && overlayDiv.parentNode) {
+            overlayDiv.parentNode.removeChild(overlayDiv);
+        }
         window.removeEventListener('mousemove', Resize, false);
         window.removeEventListener('mouseup', stopResize, false);
         e.preventDefault();
@@ -135,4 +154,4 @@ function adjustAspectRatio(container, url) {
 
 window.addEventListener('load', function() {
     addCheckboxListeners();
-});
+}); 
