@@ -26,6 +26,7 @@ function stopStream(id) {
 var highestZIndex = 1;
 
 function addElement(url, id) {
+    
     id = id + "Div";
 
     if (document.getElementById(id)) {
@@ -41,16 +42,15 @@ function addElement(url, id) {
     var videoHandler = document.createElement("div");
     var videoDiv = document.createElement("div");
     var xDiv = document.createElement("div");
-
+    var titleDiv = document.createElement("div");
     var overlayDiv = document.createElement("div");
+
     overlayDiv.style.position = "absolute";
     overlayDiv.style.top = "0";
     overlayDiv.style.left = "0";
     overlayDiv.style.width = "100%";
     overlayDiv.style.height = "100%";
     overlayDiv.style.zIndex = "9999999";
-    
-
 
     videoDiv.style.width = "100%";
     videoDiv.style.cursor = "se-resize";
@@ -62,7 +62,9 @@ function addElement(url, id) {
     videoHandler.style.padding = "0px 3px 0px 3px";
     videoHandler.style.cursor = "grab";
     videoHandler.style.backgroundColor = "#D53155";
+    videoHandler.style.display = "flex";
 
+    videoContainer.style.alignItems = "center";
     videoContainer.style.position = "absolute";
 
     xDiv.style.height = "20px";
@@ -73,7 +75,7 @@ function addElement(url, id) {
     xDiv.style.zIndex = videoHandler.zIndex++;
     xDiv.innerHTML = "<span class='material-symbols-outlined'>close</span>";
 
-
+    
 
     videoHandler.appendChild(xDiv);
     videoContainer.appendChild(videoHandler);
@@ -83,8 +85,21 @@ function addElement(url, id) {
     videoContainer.style.width = "30%";
     videoContainer.style.left = "0px"; // Initial position
     videoContainer.style.top = "0px"; // Initial position
-
     videoContainer.style.zIndex = highestZIndex++;
+
+    var videoId = videoDiv.parentNode.id.replace('Div', '');
+
+    titleDiv.style.position = "absolute";
+    titleDiv.style.left = "25%";
+    titleDiv.style.height = "20px";
+    titleDiv.style.width = "50%";
+    titleDiv.style.textAlign = "center";
+    titleDiv.style.zIndex = videoHandler.zIndex++;
+
+    var textNode = document.createTextNode(videoId + " Stream");
+    titleDiv.appendChild(textNode);
+
+    videoHandler.appendChild(titleDiv);
 
    setTimeout(function() {
     adjustAspectRatio(videoDiv, url);
@@ -93,7 +108,7 @@ function addElement(url, id) {
    videoDiv.innerHTML = '<iframe width="100%" height="100%" src="' + url + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
 
    xDiv.addEventListener('mousedown', function(e) {
-        var videoId = videoDiv.parentNode.id.replace('Div', '');
+        var videoId = videoDiv.parentNode.id.replace('Div', '');    
         stopStream(videoId);
         var checkbox = document.getElementById(videoId);
         checkbox.checked = false;

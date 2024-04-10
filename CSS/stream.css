@@ -62,37 +62,43 @@ a:visited, a:active, a:hover, a:link {
 .horizontalBar
 {
     position: absolute;
-    width: 30%;
-    height: 90px;
-    right: 37.5%;
-    bottom: 80px;
-    font-size: 25px;
+    width: 50%;
+    height: 100px;
+
+    right: 25%;
+    bottom: 2%;
+
+    font-size: calc(.7vw + 5px);
     z-index: 99999;
+
+    display: flex;
+    justify-content: space-around; /* Spread the elements evenly around the center */
+    align-items: center;
 }
 
-.controlLeft {
-    position: absolute;
-    top: 7%;
-    width: 25%;
-    left: 5%;
-    color: white;
-}
-
-.controlMiddle {
-    position: absolute;
-    left: 37.5%;
-    top: 7%;
-    width: 25%;
-    color: white;
-}
-
+.controlLeft,
+.controlMiddle,
 .controlRight {
-    position: absolute;
-    left: 70%;
-    top: 7%;
-    width: 55%;
+    height: 100%;
+    width: 33.3%;
     color: white;
+    
+    display: flex;
+    justify-content: center;
+ 
 }
+
+.container {
+    height: 100%;
+    width: 40%;
+   
+}
+
+
+
+
+
+
 
 .contentArea
 {
