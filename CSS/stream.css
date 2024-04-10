@@ -23,13 +23,24 @@ body {
     font-style: italic;    
     width: 100%;
     position: relative;
+    font-size: calc(1vw + 20px);
+    line-height: 70px;
+}
+
+.colour {
+    position: absolute;
+    background-color: #141723;
+    width: 92%;
+    height: 64px;
+    right: 2%;
+    border-radius: 20px;
+    margin-top: .2%;
 }
 
 .nav.left
 {
     position: absolute;
     text-align: center;
-    font-size: 50px;
     width: 25%;
     left: 0%;
 }
@@ -37,11 +48,10 @@ body {
 .nav.right
 {
     position: absolute;
-    font-size: 50px;
-    width: 40%;
+    width: 60%;
     right: 1%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 a:visited, a:active, a:hover, a:link {

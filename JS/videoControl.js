@@ -8,14 +8,14 @@ function addCheckboxListeners() {
             }
         })
     })
+    
 
 }
 
-function stopStream(id) {var overlayDiv = document.createElement
+function stopStream(id) {
     id = id + "Div";
     var videoContainer = document.getElementById(id);
     if (videoContainer) {
-        
         if (videoContainer.parentNode) {
             videoContainer.parentNode.removeChild(videoContainer);
         }
@@ -40,6 +40,7 @@ function addElement(url, id) {
 
     var videoHandler = document.createElement("div");
     var videoDiv = document.createElement("div");
+    var xDiv = document.createElement("div");
 
     var overlayDiv = document.createElement("div");
     overlayDiv.style.position = "absolute";
@@ -64,6 +65,17 @@ function addElement(url, id) {
 
     videoContainer.style.position = "absolute";
 
+    xDiv.style.height = "20px";
+    xDiv.style.width = "20px";
+    xDiv.style.position = "absolute";
+    xDiv.style.right = "0";
+    xDiv.style.cursor = "pointer";
+    xDiv.style.zIndex = videoHandler.zIndex++;
+    xDiv.innerHTML = "<span class='material-symbols-outlined'>close</span>";
+
+
+
+    videoHandler.appendChild(xDiv);
     videoContainer.appendChild(videoHandler);
     videoContainer.appendChild(videoDiv);
     parentElement.appendChild(videoContainer);
@@ -79,7 +91,14 @@ function addElement(url, id) {
    }, 0);
 
    videoDiv.innerHTML = '<iframe width="100%" height="100%" src="' + url + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
-    
+
+   xDiv.addEventListener('mousedown', function(e) {
+        var videoId = videoDiv.parentNode.id.replace('Div', '');
+        stopStream(videoId);
+        var checkbox = document.getElementById(videoId);
+        checkbox.checked = false;
+   })
+
     // Event listeners for dragging
     var initialX, initialY;
     var isDragging = false;
@@ -99,6 +118,11 @@ function addElement(url, id) {
         if (isDragging) {
             var newX = e.clientX - initialX;
             var newY = e.clientY - initialY;
+
+            newX = Math.max(0, Math.min(newX, document.getElementById("contentArea").offsetWidth - videoContainer.offsetWidth));
+            newY = Math.max(0, Math.min(newY, document.getElementById("contentArea").offsetHeight - videoContainer.offsetHeight));
+        
+            
             videoContainer.style.left = newX + 'px';
             videoContainer.style.top = newY + 'px';
         }
