@@ -1,3 +1,7 @@
+var highestZIndex = 1;
+var idArray = [];
+
+
 function addCheckboxListeners() {
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
@@ -7,10 +11,37 @@ function addCheckboxListeners() {
                 stopStream(checkbox.id);
             }
         })
+        idArray.push(checkbox.id);
     })
-    
-
 }
+
+function refresh() {
+    var refresh = document.getElementById("refresh");
+    
+    refresh.addEventListener("click", function() {
+        on.style.display = "none";
+        off.style.display = "block";
+        console.log(idArray);
+        idArray.forEach(function(idArray) {
+            var videoId = idArray + "Div";
+            var videoDiv = document.getElementById(videoId);
+            if(videoDiv) {
+                var innerHTML = videoDiv.innerHTML;
+                var start = innerHTML.indexOf('src="') + 5;
+                var end = innerHTML.indexOf('"', start);
+                var videoUrl = innerHTML.substring(start, end);
+                if(videoUrl) {
+                    var iframe = videoDiv.querySelector("iframe");
+                    if(iframe) {
+                        iframe.src = videoUrl;
+                    }
+                }
+            }
+        })
+
+    });
+}
+
 
 function stopStream(id) {
     id = id + "Div";
@@ -23,7 +54,6 @@ function stopStream(id) {
 }
 
 
-var highestZIndex = 1;
 
 function addElement(url, id) {
     
@@ -75,6 +105,9 @@ function addElement(url, id) {
     xDiv.style.zIndex = videoHandler.zIndex++;
     xDiv.innerHTML = "<span class='material-symbols-outlined'>close</span>";
 
+   
+
+
     
 
     videoHandler.appendChild(xDiv);
@@ -101,12 +134,16 @@ function addElement(url, id) {
 
     videoHandler.appendChild(titleDiv);
 
+
    setTimeout(function() {
     adjustAspectRatio(videoDiv, url);
    }, 0);
 
-   videoDiv.innerHTML = '<iframe width="100%" height="100%" src="' + url + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+ 
+   videoDiv.innerHTML = '<iframe width="100%" height="100%" src="' + url + '?&mute=1&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
 
+   
+   
    xDiv.addEventListener('mousedown', function(e) {
         var videoId = videoDiv.parentNode.id.replace('Div', '');    
         stopStream(videoId);
@@ -193,4 +230,6 @@ function adjustAspectRatio(container, url) {
 
 window.addEventListener('load', function() {
     addCheckboxListeners();
+    refresh();
 }); 
+
