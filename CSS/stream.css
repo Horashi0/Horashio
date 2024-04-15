@@ -94,19 +94,23 @@ a:visited, a:active, a:hover, a:link {
     left: 1%;
 }
 
-.icon {
-    font-size: calc(3vw + 25px) !important;
+.volumeIcon {
+    font-size: calc(2vw + 25px) !important;
     position: absolute;
-    right: 5px;
+    bottom: 1%;
+    left: 5%;
     cursor: pointer;
     user-select: none;
+    display: none;
+    z-index: 9999999;
 }
 
 .refreshIcon {
-    font-size: calc(3vw + 25px) !important;
+    font-size: calc(2vw + 25px) !important;
     position: absolute;
-    top: 70px;
-    right: 5px;
+    bottom: 1%;
+    left: 1%;
     cursor: pointer;
     user-select: none;
+    z-index: 9999999;
 }
