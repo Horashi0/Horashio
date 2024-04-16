@@ -1,6 +1,7 @@
 var highestZIndex = 1;
 var idArray = [];
 var volumeState;
+var videoWidth;
 
 function addCheckboxListeners() {
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -99,8 +100,6 @@ function stopStream(id) {
     }
 }
 
-
-
 function addElement(url, id) {
     
     id = id + "Div";
@@ -113,10 +112,15 @@ function addElement(url, id) {
     document.getElementById("contentArea").appendChild(parentElement);
 
     var videoContainer = document.createElement("div");
+    videoContainer.classList.add("streamContainers");
     videoContainer.id = id;
 
     var videoHandler = document.createElement("div");
+    videoHandler.classList.add("videoHandler");
+
     var videoDiv = document.createElement("div");
+    videoDiv.classList.add("videoDiv");
+    
     var xDiv = document.createElement("div");
     var titleDiv = document.createElement("div");
     var overlayDiv = document.createElement("div");
@@ -132,7 +136,7 @@ function addElement(url, id) {
     videoDiv.style.width = "100%";
     videoDiv.style.height = "100%";
     videoDiv.style.cursor = "se-resize";
-    videoDiv.style.padding = "0px 3px 3px 3px";
+    videoDiv.style.padding = "0px 9px 0px 9px";
     videoDiv.style.backgroundColor = "#141723";
 
     videoHandler.style.width = "100%";
@@ -158,7 +162,13 @@ function addElement(url, id) {
     videoContainer.appendChild(videoDiv);
     parentElement.appendChild(videoContainer);
  
-    videoContainer.style.width = "25%";
+    if(videoWidth != null) {
+        videoContainer.style.width = videoWidth + "%";
+    } else {
+        videoContainer.style.width = "25%";
+    }
+    
+
     videoContainer.style.left = "0px"; // Initial position
     videoContainer.style.top = "0px"; // Initial position
     videoContainer.style.zIndex = highestZIndex++;
@@ -223,6 +233,7 @@ function addElement(url, id) {
     var initialX, initialY;
     var isDragging = false;
 
+    //Mouse
     videoHandler.addEventListener('mousedown', function(e) {
         videoContainer.appendChild(overlayDiv)
         isDragging = true;
@@ -234,6 +245,19 @@ function addElement(url, id) {
         e.stopPropagation();
     });
 
+    //Touch
+    videoHandler.addEventListener('touchstart', function(e) {
+        videoContainer.appendChild(overlayDiv)
+        isDragging = true;
+        initialX = e.touches[0].clientX - videoContainer.offsetLeft;
+        initialY = e.touches[0].clientY - videoContainer.offsetTop;
+        videoContainer.classList.add('grabbed');
+        videoContainer.style.zIndex = highestZIndex++;
+        e.preventDefault();
+        e.stopPropagation();
+    });
+
+    //Mouse
     document.addEventListener('mousemove', function(e) {
         if (isDragging) {
             var newX = e.clientX - initialX;
@@ -248,7 +272,37 @@ function addElement(url, id) {
         }
     });
 
+    //Touch
+    document.addEventListener('touchmove', function(e) {
+        if (isDragging) {
+            var newX = e.touches[0].clientX - initialX;
+            var newY = e.touches[0].clientY - initialY;
+
+            newX = Math.max(0, Math.min(newX, document.getElementById("contentArea").offsetWidth - videoContainer.offsetWidth));
+            newY = Math.max(0, Math.min(newY, document.getElementById("contentArea").offsetHeight - videoContainer.offsetHeight));
+        
+            
+            videoContainer.style.left = newX + 'px';
+            videoContainer.style.top = newY + 'px';
+        }
+    });
+
+    //Mouse
     document.addEventListener('mouseup', function(e) {
+        if(isDragging) {
+            if(overlayDiv && overlayDiv.parentNode) {
+                overlayDiv.parentNode.removeChild(overlayDiv);
+            }
+            isDragging = false;
+            videoContainer.classList.remove('grabbed');            
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+    });
+
+    //Touch
+    document.addEventListener('touchend', function(e) {
         if(isDragging) {
             if(overlayDiv && overlayDiv.parentNode) {
                 overlayDiv.parentNode.removeChild(overlayDiv);
@@ -264,30 +318,65 @@ function addElement(url, id) {
     
 
     videoDiv.addEventListener('mousedown', initResize, false);
+    videoDiv.addEventListener('touchstart', initResize, false);
 
     function initResize(e) {
         videoContainer.appendChild(overlayDiv)
         videoContainer.style.zIndex = highestZIndex++;
+
         window.addEventListener('mousemove', Resize, false);
+        window.addEventListener('touchmove', Resize, false);
+
         window.addEventListener('mouseup', stopResize, false);
+        window.addEventListener('touchend', stopResize, false);
+
         e.preventDefault();
         e.stopPropagation();
     }
 
     function Resize(e) {
-        videoContainer.style.width = (e.clientX - videoContainer.offsetLeft) + 'px';
-        adjustAspectRatio(videoDiv, url);
+        var clientX = e.clientX || e.touches[0].clientX;
+        videoContainer.style.width = (clientX - videoContainer.offsetLeft) + 'px';
+        adjustAspectRatio(videoDiv);
     }
 
     function stopResize(e) {
         if(overlayDiv && overlayDiv.parentNode) {
             overlayDiv.parentNode.removeChild(overlayDiv);
         }
+
         window.removeEventListener('mousemove', Resize, false);
+        window.removeEventListener('touchmove', Resize, false);
+        
         window.removeEventListener('mouseup', stopResize, false);
+        window.removeEventListener('touchend', stopResize, false);
+
         e.preventDefault();
         e.stopPropagation();
     }
+
+
+    // Touch control code
+    document.addEventListener('touchstart', function(event) {
+        // Get the touch position relative to the viewport
+        var touchX = event.touches[0].clientX;
+        var touchY = event.touches[0].clientY;
+        
+        // Perform actions based on touch position or other criteria
+        console.log('Touch started at X:', touchX, 'Y:', touchY);
+    });
+
+    document.addEventListener('touchmove', function(event) {
+        // Prevent default behavior to disable scrolling
+        event.preventDefault();
+        
+        // Get the new touch position relative to the viewport
+        var touchX = event.touches[0].clientX;
+        var touchY = event.touches[0].clientY;
+        
+        // Perform actions based on touch position or other criteria
+        console.log('Touch moved to X:', touchX, 'Y:', touchY);
+    });
 };
 
 function adjustAspectRatio(container) {
@@ -296,9 +385,40 @@ function adjustAspectRatio(container) {
     container.style.height = height + 'px';
 }
 
+function applyStreamWidth() {
+    var streamWidthInput = document.getElementById("streamWidth");
+    streamWidthInput.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            console.log("LORDA MERCY!");
+            event.preventDefault();
+            var width = parseFloat(streamWidthInput.value);
+            if(width >= 0 && width <= 100) {
+                videoWidth = width;
+
+                if(!isNaN(width)) {
+                    var streamContainers = document.querySelectorAll(".streamContainers");
+                    streamContainers.forEach(function(container) {
+                        container.style.width = width + "%";
+                        var videoDiv = container.querySelector(".videoDiv");
+                        adjustAspectRatio(videoDiv);
+
+                        var iframe = container.querySelector("iframe");
+                        iframe.style.width = "100%"; 
+                        iframe.style.height = "100%"; 
+                    });
+                } else {
+                    alert("Dont be a numpty, please enter numbers 0-100");
+                }
+            }
+            
+        }
+    })
+}
+
 window.addEventListener('load', function() {
     addCheckboxListeners();
     refresh();
     volume();
+    applyStreamWidth();
 }); 
 

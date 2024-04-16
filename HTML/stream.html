@@ -6,25 +6,23 @@
         <title>Horashio Stream</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
         <link rel="stylesheet" href="../CSS/stream.css">
         <script src="https://www.youtube.com/iframe_api"></script>
         <script src="../JS/videoControl.js" type="text/javascript"></script>
-        
-
+        <script src="../JS/index.js" type="text/javascript"></script>
         
     </head>
     <body>
         <div class="nav">
             <div class="colour"></div>
             <div class="nav left">
-                <a href="../index.html">Horashio</a>
+                <a href="../index.html" id="Logo">Horashio</a>
             </div>
             <div class="nav right">
-                <a href="#">SpaceNews</a>
-                <a href="#">Blog</a>
-                <a href="stream.html">Stream</a>
+                <a href="#" id="SpaceNews">SpaceNews</a>
+                <a href="#" id="Blog">Blog</a>
+                <a href="../HTML/stream.html" id="Stream">Stream</a>
             </div>
         </div>
         <div class="contentArea" id="contentArea">
@@ -35,7 +33,7 @@
             <div class="refreshButton">
                 <i class="material-symbols-outlined refreshIcon" id="refresh">refresh</i>
             </div>
-            
+            <input type="number" id="streamWidth" min="0" max="100" placeholder="Width">
         </div>
         <div class="horizontalBar">
             <div class="controlLeft">

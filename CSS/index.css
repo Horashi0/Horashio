@@ -57,7 +57,7 @@
         justify-content: space-evenly;
     }
     
-    a:visited, a:active, a:hover, a:link {
+    a, a:visited, a:active, a:hover, a:link {
         color: white;
         text-decoration-line: none;
     }
@@ -132,7 +132,7 @@
         justify-content: space-evenly;
     }
     
-    a:visited, a:active, a:hover, a:link {
+    a, a:visited, a:active, a:hover, a:link {
         color: white;
         text-decoration-line: none;
     }

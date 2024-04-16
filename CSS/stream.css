@@ -54,7 +54,7 @@ body {
     justify-content: space-evenly;
 }
 
-a:visited, a:active, a:hover, a:link {
+a, a:visited, a:active, a:hover, a:link {
     color: white;
     text-decoration-line: none;
 }
@@ -98,19 +98,50 @@ a:visited, a:active, a:hover, a:link {
     font-size: calc(2vw + 25px) !important;
     position: absolute;
     bottom: 1%;
-    left: 5%;
+    left: 8%;
     cursor: pointer;
     user-select: none;
     display: none;
     z-index: 9999999;
+    color: #E55129;
 }
 
 .refreshIcon {
     font-size: calc(2vw + 25px) !important;
     position: absolute;
     bottom: 1%;
-    left: 1%;
+    left: 3%;
     cursor: pointer;
     user-select: none;
     z-index: 9999999;
+    color: #E55129;
+}
+
+/* Hide the number input arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+
+
+#streamWidth {
+    position: absolute;
+    left: 3.7%;
+    bottom: 12%;
+    
+    height: 30px;
+    width: 60px;
+
+    background-color: #1f2436;
+    color: white;
+    outline: none;
+    border: none;
+
+    z-index: 99999;
 }
