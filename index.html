@@ -8,19 +8,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./CSS/index.css">
         <script src="../JS/index.js" type="text/javascript"></script>
+        <script src="https://js-de.sentry-cdn.com/b2a866b6a24f2a54dc10d941b046aaaa.min.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
         <div class="nav">
             <div class="colour"></div>
             <div class="nav left">
-                <a href="../index.html" id="Logo">Horashio</a>
+                <a href="./index.html" id="Logo">Horashio</a>
             </div>
             <div class="nav right">
                 <a href="#" id="SpaceNews">SpaceNews</a>
                 <a href="#" id="Blog">Blog</a>
                 <a href="../HTML/stream.html" id="Stream">Stream</a>
             </div>
+            <button class="hamburger">
+                <!-- material icons https://material.io/resources/icons/ -->
+                <i class="menuIcon material-icons" onclick="Display();">menu</i>
+                <i class="closeIcon material-icons" onclick="Hide();">close</i>
+            </button>
         </div>
-        <p class="Title">All things space...</p>
+        <p class="Title">All things space... <span style="font-size: 1vw;">and ducks</span></p>
+        <div class="duckGifDiv">
+            <img src="/Images/duck.gif" alt="Duck Gif" id="duckGif">
+        </div>
+        
+        
     </body>
 </html>

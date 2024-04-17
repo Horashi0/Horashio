@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-@media screen and (min-width: 770px) {
+@media screen and (min-width: 771px) {
     *{
         margin: 0;
         font-family: "Quantico", sans-serif;
@@ -27,6 +27,9 @@
         position: relative;
         font-size: calc(1vw + 20px);
         line-height: 70px;
+
+        display: flex;
+        align-items: center;
     }
     
     .colour {
@@ -44,17 +47,22 @@
         position: absolute;
         text-align: center;
         width: 25%;
-        left: 0%;
+        left: 10%;
     }
+    
     
     .nav.right
     {
         position: absolute;
-        line-height: 70px;
+
         width: 60%;
         right: 1%;
         display: flex;
         justify-content: space-evenly;
+    }
+
+    #Logo {
+        z-index: 9999999;
     }
     
     a, a:visited, a:active, a:hover, a:link {
@@ -69,8 +77,24 @@
         font-size: 3vw;
         color: white;
     }
-    
-    
+    .duckGifDiv {
+        position: absolute;
+        width: 10%;
+        height: 30%;
+        bottom: 20%;
+        left: 10%;
+    }
+
+    #duckGif {
+        width: 100%;
+    }
+
+    .closeIcon,
+    .menuIcon,
+    .hamburger {
+        display: none;
+    } 
+
 }
 
 @media screen and (max-width: 770px) {
@@ -99,6 +123,9 @@
         width: 100%;
         height: 80px;
         position: relative;
+
+        display: flex;
+        align-items: center;
     }
     
     .colour {
@@ -118,18 +145,17 @@
         font-size: calc(1vw + 20px);
         line-height: 70px;
         width: 25%;
-        left: 0%;
+        left: 10%;
     }
     
-    .nav.right
-    {
-        position: absolute;
-        font-size: calc(1vw + 20px);
-        line-height: 70px;
-        width: 60%;
-        right: 1%;
-        display: flex;
-        justify-content: space-evenly;
+    #SpaceNews,
+    #Blog,
+    #Stream {
+        display: none;
+    }
+
+    #Logo {
+        z-index: 9999999;
     }
     
     a, a:visited, a:active, a:hover, a:link {
@@ -145,6 +171,29 @@
         color: white;
     }
     
-    
+    .duckGifDiv {
+        position: absolute;
+        width: 10%;
+        height: 30%;
+        bottom: 20%;
+        left: 10%;
+    }
+
+    #duckGif {
+        width: 100%;
+    }
+
+    .hamburger {
+        position: absolute;
+        right: 12%;
+
+        background-color: #141723;
+        color: white;
+        border: none;
+        
+        cursor: pointer;
+    }
+
+   
 }
 

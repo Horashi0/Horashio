@@ -7,11 +7,12 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="../CSS/stream.css">
         <script src="https://www.youtube.com/iframe_api"></script>
         <script src="../JS/videoControl.js" type="text/javascript"></script>
         <script src="../JS/index.js" type="text/javascript"></script>
-        
+        <script src="https://js-de.sentry-cdn.com/b2a866b6a24f2a54dc10d941b046aaaa.min.js" crossorigin="anonymous"></script>        
     </head>
     <body>
         <div class="nav">
@@ -24,6 +25,11 @@
                 <a href="#" id="Blog">Blog</a>
                 <a href="../HTML/stream.html" id="Stream">Stream</a>
             </div>
+            <button class="hamburger">
+                <!-- material icons https://material.io/resources/icons/ -->
+                <i class="menuIcon material-icons" onclick="Display();">menu</i>
+                <i class="closeIcon material-icons" onclick="Hide();">close</i>
+            </button>
         </div>
         <div class="contentArea" id="contentArea">
             <div class="audioButton">
@@ -33,7 +39,7 @@
             <div class="refreshButton">
                 <i class="material-symbols-outlined refreshIcon" id="refresh">refresh</i>
             </div>
-            <input type="number" id="streamWidth" min="0" max="100" placeholder="Width">
+            <input type="number" id="streamWidth" min="0" max="100" placeholder="Width %">
         </div>
         <div class="horizontalBar">
             <div class="controlLeft">

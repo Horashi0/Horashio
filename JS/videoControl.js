@@ -136,12 +136,12 @@ function addElement(url, id) {
     videoDiv.style.width = "100%";
     videoDiv.style.height = "100%";
     videoDiv.style.cursor = "se-resize";
-    videoDiv.style.padding = "0px 9px 0px 9px";
-    videoDiv.style.backgroundColor = "#141723";
+    videoDiv.style.paddingRight = "10px";
+    videoDiv.style.paddingBottom = "10px";
+    videoDiv.style.backgroundColor = "transparent";
 
     videoHandler.style.width = "100%";
     videoHandler.style.height = "20px";
-    videoHandler.style.padding = "0px 3px 0px 3px";
     videoHandler.style.cursor = "grab";
     videoHandler.style.backgroundColor = "#D53155";
     videoHandler.style.display = "flex";
