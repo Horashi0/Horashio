@@ -222,12 +222,22 @@ function addElement(url, id) {
         }
    });
 
-   xDiv.addEventListener('mousedown', function(e) {
+   //Mouse
+    xDiv.addEventListener('mousedown', function(e) {
         var videoId = videoDiv.parentNode.id.replace('Div', '');    
         stopStream(videoId);
         var checkbox = document.getElementById(videoId);
         checkbox.checked = false;
-   })
+    })
+
+   //Mobile
+    xDiv.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        var videoId = videoDiv.parentNode.id.replace('Div', '');    
+        stopStream(videoId);
+        var checkbox = document.getElementById(videoId);
+        checkbox.checked = false;
+    })
 
     // Event listeners for dragging
     var initialX, initialY;

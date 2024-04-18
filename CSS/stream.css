@@ -68,37 +68,52 @@
         text-decoration-line: none;
     }
     
-    .horizontalBar
+    .controlBar
     {
         position: absolute;
+        display: grid;
+
+        grid-template-columns: 33.3% 33.3% 33.3%;
+
+        left: 25%;
+        bottom: max(15px, 2%);
+
         width: 50%;
-        height: 100px;
+        height: 30%;
+        max-height: 100px;
+
+        z-index: 999999999999999;
+
+    }
     
-        right: 25%;
-        bottom: calc(.7vw + 50px);
-    
-        font-size: calc(.7vw + 5px);
-        z-index: 99999;
-    
+    .checkboxWrapper {
         display: flex;
-        justify-content: space-around; /* Spread the elements evenly around the center */
-        align-items: center;
+        align-items: center; /* Center items horizontally */
+        justify-content: center; /* Center items horizontally */
+        margin-bottom: 5px; /* Add some spacing between each row */
+
     }
     
-    .controlLeft,
-    .controlMiddle,
-    .controlRight {
-        height: 100%;
-        width: 33.3%;
+    .checkboxContainer label {
         color: white;
+        margin-left: 5px; /* Adjust the spacing between the checkbox and label */
+        width: 80px;
+        display: inline-block;
     }
+    
+    
+    input[type="checkbox"] {
+        width: 18px; /* Set a fixed width for the checkboxes */
+        height: 18px; /* Set a fixed height for the checkboxes */
+    }
+    
     .contentArea
     {
         position: absolute;
         background: #141723;
         height: calc(95%, 50px);
         width: 98%;
-        top: max(80px, 3%);
+        top: max(90px, 3%);
         bottom: max(30px, 2%);
         left: 1%;
     }
@@ -228,37 +243,53 @@
         text-decoration-line: none;
     }
     
-    .horizontalBar
+    .controlBar
     {
         position: absolute;
-        width: 50%;
-        height: 100px;
+        display: grid;
+
+        grid-template-columns: 33.3% 33.3% 33.3%;
+
+        left: 5%;
+        bottom: max(15px, 2%);
+
+        width: 90%;
+        height: 30%;
+        max-height: 100px;
+
+        z-index: 999999999999999;
+
+    }
     
-        right: 25%;
-        bottom: calc(.7vw + 50px);
-    
-        font-size: calc(.7vw + 5px);
-        z-index: 99999;
-    
+    .checkboxWrapper {
         display: flex;
-        justify-content: space-around; /* Spread the elements evenly around the center */
-        align-items: center;
+        align-items: center; /* Center items horizontally */
+        justify-content: center; /* Center items horizontally */
+        margin-bottom: 5px; /* Add some spacing between each row */
+
     }
     
-    .controlLeft,
-    .controlMiddle,
-    .controlRight {
-        height: 100%;
-        width: 33.3%;
+    .checkboxContainer label {
         color: white;
+        margin-left: 5px; /* Adjust the spacing between the checkbox and label */
+        width: 70px;
+        display: inline-block;
+       
     }
+    
+    
+    input[type="checkbox"] {
+        width: 18px; /* Set a fixed width for the checkboxes */
+        height: 18px; /* Set a fixed height for the checkboxes */
+    }
+    
     .contentArea
     {
         position: absolute;
         background: #141723;
         height: calc(95%, 50px);
         width: 98%;
-        top: max(80px, 3%);
+        top: max(90px, 3%);
         bottom: max(30px, 2%);
         left: 1%;
     }
