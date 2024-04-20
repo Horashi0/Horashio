@@ -25,21 +25,30 @@
                 <a href="#" id="Blog">Blog</a>
                 <a href="../HTML/stream.html" id="Stream">Stream</a>
             </div>
+            <button class="expand">
+                <i class="dropDown material-symbols-outlined" onclick="DisplayDropDown();">expand_more</i>
+                <i class="dropUp material-symbols-outlined" onclick="HideDropDown();">expand_less</i>
+            </button>
             <button class="hamburger">
                 <!-- material icons https://material.io/resources/icons/ -->
-                <i class="menuIcon material-icons" onclick="Display();">menu</i>
-                <i class="closeIcon material-icons" onclick="Hide();">close</i>
+                <i class="menuIcon material-icons" onclick="DisplayHamburger();">menu</i>
+                <i class="closeIcon material-icons" onclick="HideHamburger();">close</i>
             </button>
         </div>
         <div class="contentArea" id="contentArea">
-            <div class="audioButton">
-                <i class="material-symbols-outlined volumeIcon" id="volumeOn" >volume_up</i>
-                <i class="material-symbols-outlined volumeIcon" id="volumeOff">volume_off</i>
+            <div class="dropDownArea">
+                <input type="number" id="streamWidth" min="0" max="100" placeholder="Width %">
+
+                <div class="audioButton">
+                    <i class="material-symbols-outlined volumeIcon" id="volumeOn" >volume_up</i>
+                    <i class="material-symbols-outlined volumeIcon" id="volumeOff">volume_off</i>
+                </div>
+                <div class="refreshButton">
+                    <i class="material-symbols-outlined refreshIcon" id="refresh">refresh</i>
+                </div>
             </div>
-            <div class="refreshButton">
-                <i class="material-symbols-outlined refreshIcon" id="refresh">refresh</i>
-            </div>
-            <input type="number" id="streamWidth" min="0" max="100" placeholder="Width %">
+            
+            
             <div class="controlBar">                
                 <div class="checkboxWrapper">
                     <div class="Nerdle checkboxContainer">
@@ -95,7 +104,25 @@
                         <label for="Canaveral">Canaveral</label>
                     </div>
                 </div>
-            </div>
+                <div class="checkboxWrapper">
+                    <div class="Starbase checkboxContainer">
+                        <input type="checkbox" id="Starbase" name="Starbase" value="mhJRzQsLZGg" onclick="addElement(this.value, this.id)">
+                        <label for="Starbase">Starbase</label>
+                    </div>
+                </div>
+                <div class="checkboxWrapper">
+                    <div class="McGregor checkboxContainer">
+                        <input type="checkbox" id="McGregor" name="McGregor" value="cOmmvhDQ2HM" onclick="addElement(this.value, this.id)">
+                        <label for="McGregor">McGregor</label>
+                    </div>
+                </div>
+                <div class="checkboxWrapper">
+                    <div class="SpaceCoast checkboxContainer">
+                        <input type="checkbox" id="SpaceCoast" name="SpaceCoast" value="Jm8wRjD3xVA" onclick="addElement(this.value, this.id)">
+                        <label for="SpaceCoast">SpaceCoast</label>
+                    </div>
+                </div>
+               
         </div>
         
     </body>

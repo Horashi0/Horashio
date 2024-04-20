@@ -157,7 +157,7 @@
     #streamWidth {
         position: absolute;
         left: calc(1vw + 60px);
-        bottom: calc(2.5vw + 50px);;
+        bottom: calc(2.5vw + 50px);
         
         height: 30px;
         width: 60px;
@@ -166,7 +166,8 @@
         color: white;
         outline: none;
         border: none;
-    
+
+        border-radius: 15px;
         z-index: 99999;
     }
 
@@ -175,6 +176,10 @@
     .hamburger {
         display: none;
     } 
+
+    .expand {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 770px) {
@@ -184,6 +189,9 @@
         list-style: none;
         text-decoration: none;
     
+    }
+    .menuIcon {
+        display: inline;
     }
     
     html {
@@ -297,24 +305,24 @@
     .volumeIcon {
         font-size: calc(2vw + 25px) !important;
         position: absolute;
-        bottom: 1%;
-        left: calc(4vw + 80px);
+        bottom: 5%;
+        right: 15%;
         cursor: pointer;
         user-select: none;
         display: none;
         z-index: 9999999;
-        color: #bb4430;
+        color: black;
     }
     
     .refreshIcon {
         font-size: calc(2vw + 25px) !important;
         position: absolute;
-        bottom: 1%;
-        left: calc(.7vw + 50px);
+        bottom: 5%;
+        left: 15%;
         cursor: pointer;
         user-select: none;
         z-index: 9999999;
-        color: #bb4430;
+        color: black;
     }
     
     /* Hide the number input arrows */
@@ -326,17 +334,18 @@
     
     input[type="number"] {
         -moz-appearance: textfield; /* Firefox */
+
     }
     
-    
+   
     
     #streamWidth {
         position: absolute;
-        left: calc(1vw + 60px);
-        bottom: calc(2.5vw + 50px);;
+        left: 25%;
+        top: 10%;
         
-        height: 30px;
-        width: 60px;
+        height: 30%;
+        width: 50%;
     
         background-color: #1f2436;
         color: white;
@@ -344,6 +353,7 @@
         border: none;
     
         z-index: 99999;
+        
     }
 
     .hamburger {
@@ -355,6 +365,31 @@
         border: none;
         
         cursor: pointer;
+    }
+
+    .expand {
+        position: absolute;
+        right: 22%;
+        padding-top: 6px;
+
+        background-color: #141723;
+        color: white;
+        border: none;
+        
+        cursor: pointer;
+    }
+
+    .dropDownArea {
+        position: absolute;
+        width: 120px;
+        height: 100px;
+        right: 5%;
+
+        border-radius: 20px;
+        background-color: #bb4430;  
+        z-index: 999999999999999;
+
+       
     }
 }
 

@@ -1,22 +1,44 @@
-function Display()
+function DisplayHamburger()
 {
     document.querySelector('.hamburger').addEventListener('click', function() {
         document.querySelector('.closeIcon').style.display = 'inline';
         document.querySelector('.menuIcon').style.display = 'none';
     });
-    DisplayMenus();
+    DisplayHamburgerMenus();
 }
 
-function Hide()
+function HideHamburger()
 {
     document.querySelector('.hamburger').addEventListener('click', function() {
         document.querySelector('.closeIcon').style.display = 'none';
         document.querySelector('.menuIcon').style.display = 'inline';
     });
-    HideMenus();
+    HideHamburgerMenus();
 }
 
-function DisplayMenus()
+function DisplayDropDown()
+{
+    document.querySelector('.expand').addEventListener('click', function() {
+        document.querySelector('.dropUp').style.display = 'block';
+        document.querySelector('.dropDown').style.display = 'none';
+        console.log("top of the morning to ya lady")
+        document.querySelector('.dropDownArea').style.display = 'block';
+        
+    });
+}
+
+function HideDropDown()
+{
+    document.querySelector('.expand').addEventListener('click', function() {
+        document.querySelector('.dropUp').style.display = 'none';
+        document.querySelector('.dropDown').style.display = 'block';
+
+        document.querySelector('.dropDownArea').style.display = 'none';
+    });
+}
+
+
+function DisplayHamburgerMenus()
 {
     let SpaceNews = document.getElementById('SpaceNews');
     let Blog = document.getElementById('Blog');
@@ -74,7 +96,7 @@ function DisplayMenus()
     
 }
 
-function HideMenus()
+function HideHamburgerMenus()
 {
     document.getElementById('SpaceNews').style.display = 'none';
     document.getElementById('Blog').style.display = "none";
@@ -87,9 +109,14 @@ function RemoveAddElements() {
         document.getElementById('SpaceNews').removeAttribute('style');
         document.getElementById('Blog').removeAttribute('style');
         document.getElementById('Stream').removeAttribute('style');
+
+        document.querySelector('.dropDownArea').style.display = 'block';
     } else if (screenWidth < 770) {
         document.querySelector('.closeIcon').style.display = 'none';
         document.querySelector('.menuIcon').style.display = 'block'; 
+
+        document.querySelector('.dropUp').style.display = 'none';
+        document.querySelector('.dropDown').style.display = 'block'; 
     }
 }
 
@@ -98,4 +125,6 @@ window.addEventListener('resize', RemoveAddElements);
 
 window.addEventListener('load', function() {
     RemoveAddElements();
+
+    document.querySelector('.dropDownArea').style.display = 'none';
 })

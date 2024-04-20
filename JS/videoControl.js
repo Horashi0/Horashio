@@ -425,6 +425,18 @@ function applyStreamWidth() {
     })
 }
 
+function resizeElements() {
+    var streamContainers = document.querySelectorAll(".streamContainers");
+    streamContainers.forEach(function(container) {
+        var videoDiv = container.querySelector(".videoDiv");
+        adjustAspectRatio(videoDiv);
+
+        var iframe = container.querySelector("iframe");
+        iframe.style.width = "100%"; 
+        iframe.style.height = "100%"; 
+    });
+}
+
 window.addEventListener('load', function() {
     addCheckboxListeners();
     refresh();
@@ -432,3 +444,4 @@ window.addEventListener('load', function() {
     applyStreamWidth();
 }); 
 
+window.addEventListener('resize', resizeElements);
