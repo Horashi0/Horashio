@@ -117,6 +117,10 @@
         bottom: max(30px, 2%);
         left: 1%;
     }
+
+    .dropDownArea {
+        display: block;
+    }
     
     .volumeIcon {
         font-size: calc(2vw + 25px) !important;
@@ -180,6 +184,8 @@
     .expand {
         display: none;
     }
+
+   
 }
 
 @media screen and (max-width: 770px) {
@@ -380,6 +386,7 @@
     }
 
     .dropDownArea {
+        display: none;
         position: absolute;
         width: 120px;
         height: 100px;
@@ -388,8 +395,6 @@
         border-radius: 20px;
         background-color: #bb4430;  
         z-index: 999999999999999;
-
-       
     }
 }
 

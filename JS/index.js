@@ -18,10 +18,10 @@ function HideHamburger()
 
 function DisplayDropDown()
 {
+    document.querySelector('.expand').removeEventListener('click', DisplayDropDown);
     document.querySelector('.expand').addEventListener('click', function() {
         document.querySelector('.dropUp').style.display = 'block';
         document.querySelector('.dropDown').style.display = 'none';
-        console.log("top of the morning to ya lady")
         document.querySelector('.dropDownArea').style.display = 'block';
         
     });
@@ -29,11 +29,12 @@ function DisplayDropDown()
 
 function HideDropDown()
 {
+    document.querySelector('.expand').removeEventListener('click', HideDropDown);
     document.querySelector('.expand').addEventListener('click', function() {
         document.querySelector('.dropUp').style.display = 'none';
         document.querySelector('.dropDown').style.display = 'block';
 
-        document.querySelector('.dropDownArea').style.display = 'none';
+        document.querySelector('.dropDownArea').removeAttribute('style');
     });
 }
 
@@ -103,28 +104,29 @@ function HideHamburgerMenus()
     document.getElementById('Stream').style.display = "none";
 }
 
+var resizeCount = 0;
+
 function RemoveAddElements() {
     const screenWidth = window.innerWidth;
     if (screenWidth > 770) {
         document.getElementById('SpaceNews').removeAttribute('style');
         document.getElementById('Blog').removeAttribute('style');
         document.getElementById('Stream').removeAttribute('style');
-
-        document.querySelector('.dropDownArea').style.display = 'block';
-    } else if (screenWidth < 770) {
+        
+    } else if (screenWidth < 770 && resizeCount == 0) {
         document.querySelector('.closeIcon').style.display = 'none';
         document.querySelector('.menuIcon').style.display = 'block'; 
 
         document.querySelector('.dropUp').style.display = 'none';
         document.querySelector('.dropDown').style.display = 'block'; 
+        resizeCount++;
     }
+    
 }
 
 window.addEventListener('resize', RemoveAddElements);
 
 
 window.addEventListener('load', function() {
-    RemoveAddElements();
-
-    document.querySelector('.dropDownArea').style.display = 'none';
+    RemoveAddElements();   
 })

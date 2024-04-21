@@ -427,6 +427,9 @@ function applyStreamWidth() {
 
 function resizeElements() {
     var streamContainers = document.querySelectorAll(".streamContainers");
+    var contentAreaWidth = document.getElementById("contentArea").offsetWidth;
+    var contentAreaHeight = document.getElementById("contentArea").offsetHeight;
+
     streamContainers.forEach(function(container) {
         var videoDiv = container.querySelector(".videoDiv");
         adjustAspectRatio(videoDiv);
@@ -434,6 +437,8 @@ function resizeElements() {
         var iframe = container.querySelector("iframe");
         iframe.style.width = "100%"; 
         iframe.style.height = "100%"; 
+
+        
     });
 }
 
