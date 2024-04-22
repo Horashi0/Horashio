@@ -100,95 +100,60 @@ function stopStream(id) {
     }
 }
 
-function addElement(url, id) {
+function styleContainers(parentElement, videoContainer, videoHandler, videoDiv, xDiv, titleDiv, overlayDiv, textNode, id) {
+
+    document.getElementById("contentArea").appendChild(parentElement);
+    videoHandler.appendChild(titleDiv);
+    videoHandler.appendChild(xDiv);
+    videoContainer.appendChild(videoHandler);
+    videoContainer.appendChild(videoDiv);
+    parentElement.appendChild(videoContainer);
+
+    videoContainer.classList.add("streamContainers");
+    videoDiv.classList.add("videoDiv");
+    xDiv.classList.add("xDiv");
+    titleDiv.classList.add("titleDiv");
+    videoHandler.classList.add("videoHandler");
+    overlayDiv.classList.add("overlayDiv");
+
+    videoContainer.id = id;
+    videoContainer.style.zIndex = highestZIndex++;
+
+    if(videoWidth != null) {
+        videoContainer.style.width = videoWidth + "%";
+    } else {
+        videoContainer.style.width = "25%";
+    }  
+
+
+    xDiv.style.zIndex = videoHandler.zIndex++;
+    xDiv.innerHTML = "<span class='material-symbols-outlined'>close</span>";
     
-    id = id + "Div";
+    titleDiv.style.zIndex = videoHandler.zIndex++;
+    titleDiv.appendChild(textNode);
+}
+
+function addElement(url, id) {
+    // Stream ID is the checkbox's ID + div
+    var id = id + "Div";
 
     if (document.getElementById(id)) {
         return;
     }
     
-    var parentElement = document.createElement('div');
-    document.getElementById("contentArea").appendChild(parentElement);
-
-    var videoContainer = document.createElement("div");
-    videoContainer.classList.add("streamContainers");
-    videoContainer.id = id;
-
-    var videoHandler = document.createElement("div");
-    videoHandler.classList.add("videoHandler");
-
-    var videoDiv = document.createElement("div");
-    videoDiv.classList.add("videoDiv");
     
+    var parentElement = document.createElement('div');
+    var videoContainer = document.createElement("div");
+    var videoHandler = document.createElement("div");
+    var videoDiv = document.createElement("div");
     var xDiv = document.createElement("div");
     var titleDiv = document.createElement("div");
-    var overlayDiv = document.createElement("div");
-
-    overlayDiv.style.position = "absolute";
-    overlayDiv.style.top = "0";
-    overlayDiv.style.left = "0";
-    overlayDiv.style.width = "100%";
-    overlayDiv.style.height = "100%";
-    overlayDiv.style.zIndex = "9999999";
-
-   
-    videoDiv.style.width = "100%";
-    videoDiv.style.height = "100%";
-    videoDiv.style.cursor = "se-resize";
-    videoDiv.style.paddingRight = "10px";
-    videoDiv.style.paddingBottom = "10px";
-    videoDiv.style.backgroundColor = "transparent";
-
-    videoHandler.style.width = "100%";
-    videoHandler.style.height = "20px";
-    videoHandler.style.cursor = "grab";
-    videoHandler.style.backgroundColor = "#D53155";
-    videoHandler.style.display = "flex";
-
-    videoContainer.style.alignItems = "center";
-    videoContainer.style.position = "absolute";
-
-    xDiv.style.height = "20px";
-    xDiv.style.width = "20px";
-    xDiv.style.position = "absolute";
-    xDiv.style.right = "0";
-    xDiv.style.cursor = "pointer";
-    xDiv.style.zIndex = videoHandler.zIndex++;
-    xDiv.innerHTML = "<span class='material-symbols-outlined'>close</span>";
-
-    videoHandler.appendChild(xDiv);
-    videoContainer.appendChild(videoHandler);
-    videoContainer.appendChild(videoDiv);
-    parentElement.appendChild(videoContainer);
- 
-    if(videoWidth != null) {
-        videoContainer.style.width = videoWidth + "%";
-    } else {
-        videoContainer.style.width = "25%";
-    }
-    
-
-    videoContainer.style.left = "0px"; // Initial position
-    videoContainer.style.top = "0px"; // Initial position
-    videoContainer.style.zIndex = highestZIndex++;
-
-    var videoId = videoDiv.parentNode.id.replace('Div', '');
-
-    titleDiv.style.position = "absolute";
-    titleDiv.style.left = "25%";
-    titleDiv.style.height = "20px";
-    titleDiv.style.width = "50%";
-    titleDiv.style.textAlign = "center";
-    titleDiv.style.zIndex = videoHandler.zIndex++;
-
+    var overlayDiv = document.createElement("div");  
+    var videoId = id.replace('Div', '');
     var textNode = document.createTextNode(videoId + " Stream");
-    titleDiv.appendChild(textNode);
-
-    videoHandler.appendChild(titleDiv);
-
-   
-
+    
+    styleContainers(parentElement, videoContainer, videoHandler, videoDiv, xDiv, titleDiv, overlayDiv, textNode, id);
+                    
    setTimeout(function() {
     adjustAspectRatio(videoDiv);
    }, 0);

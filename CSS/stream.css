@@ -186,6 +186,56 @@
     }
 
    
+    .videoDiv {
+        width:100%;
+        height: 100%;
+        cursor: se-resize;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        background-color: transparent;
+    }
+
+    .videoHandler {
+        width: 100%;
+        height: 20px;
+        cursor: grab;
+        background-color: #D53155;
+        display: flex;
+    }
+
+    .streamContainers {
+        align-self: center;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+    }
+
+    .titleDiv {
+        position: absolute;
+        left: 25%;
+        height: 20px;
+        width: 50%;
+        text-align: center;
+    }
+
+    .xDiv {
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        right: 0;
+        cursor: pointer;
+    }
+
+    .overlayDiv {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999999;
+    }
+
+
 }
 
 @media screen and (max-width: 770px) {
@@ -401,6 +451,55 @@
 
     #dropUp {
         display: none;
+    }
+
+    .videoDiv {
+        width:100%;
+        height: 100%;
+        cursor: se-resize;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        background-color: transparent;
+    }
+
+    .videoHandler {
+        width: 100%;
+        height: 20px;
+        cursor: grab;
+        background-color: #D53155;
+        display: flex;
+    }
+
+    .streamContainers {
+        align-self: center;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+    }
+
+    .titleDiv {
+        position: absolute;
+        left: 25%;
+        height: 20px;
+        width: 50%;
+        text-align: center;
+    }
+
+    .xDiv {
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        right: 0;
+        cursor: pointer;
+    }
+
+    .overlayDiv {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999999;
     }
 }
 
