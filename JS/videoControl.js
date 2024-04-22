@@ -100,7 +100,7 @@ function stopStream(id) {
     }
 }
 
-function styleContainers(parentElement, videoContainer, videoHandler, videoDiv, xDiv, titleDiv, overlayDiv, textNode, id) {
+function styleContainers(parentElement, videoContainer, videoHandler, videoDiv, xDiv, titleDiv, overlayDiv, textNode, id, wrapper) {
 
     document.getElementById("contentArea").appendChild(parentElement);
     videoHandler.appendChild(titleDiv);
@@ -108,6 +108,7 @@ function styleContainers(parentElement, videoContainer, videoHandler, videoDiv, 
     videoContainer.appendChild(videoHandler);
     videoContainer.appendChild(videoDiv);
     parentElement.appendChild(videoContainer);
+    videoDiv.appendChild(wrapper);
 
     videoContainer.classList.add("streamContainers");
     videoDiv.classList.add("videoDiv");
@@ -133,6 +134,37 @@ function styleContainers(parentElement, videoContainer, videoHandler, videoDiv, 
     titleDiv.appendChild(textNode);
 }
 
+function addVideo(wrapper, url) {
+    //videoDiv.innerHTML = '<iframe width="100%" height="100%" src="' + url + '?&mute=1&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
+    
+    wrapper.style.width = '100%';
+    wrapper.style.height = '100%';
+    
+    
+    new YT.Player(wrapper, {
+        height: "100%",
+        width: "100%",
+        videoId: url,
+        playerVars: {
+            autoplay: 1, // Autoplay the video
+            playsinline: 1, // Play inline on mobile devices
+            frameborder: 0,
+            allow: allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
+            allowfullscreen: true,
+            suggestedQuality: 'hd1080',
+        },
+        events: {
+            'onReady': function(event) {
+                if(volumeState == "mute") {
+                    event.target.mute();
+                } else {
+                    event.target.unMute();
+                }
+            }
+        }
+   });
+}
+
 function addElement(url, id) {
     // Stream ID is the checkbox's ID + div
     var id = id + "Div";
@@ -151,41 +183,15 @@ function addElement(url, id) {
     var overlayDiv = document.createElement("div");  
     var videoId = id.replace('Div', '');
     var textNode = document.createTextNode(videoId + " Stream");
-    
-    styleContainers(parentElement, videoContainer, videoHandler, videoDiv, xDiv, titleDiv, overlayDiv, textNode, id);
+    var wrapper = document.createElement('div');
+
+    styleContainers(parentElement, videoContainer, videoHandler, videoDiv, xDiv, titleDiv, overlayDiv, textNode, id, wrapper);
                     
+    addVideo(wrapper, url);
+
    setTimeout(function() {
     adjustAspectRatio(videoDiv);
    }, 0);
-
- 
-    //videoDiv.innerHTML = '<iframe width="100%" height="100%" src="' + url + '?&mute=1&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>';
-    var wrapper = document.createElement('div');
-    wrapper.style.width = '100%';
-    wrapper.style.height = '100%';
-    videoDiv.appendChild(wrapper);
-    
-    var player = new YT.Player(wrapper, {
-        height: "100%",
-        width: "100%",
-        videoId: url,
-        playerVars: {
-            autoplay: 1, // Autoplay the video
-            playsinline: 1, // Play inline on mobile devices
-            frameborder: 0,
-            allow: allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share",
-            allowfullscreen: true,
-        },
-        events: {
-            'onReady': function(event) {
-                if(volumeState == "mute") {
-                    event.target.mute();
-                } else {
-                    event.target.unMute();
-                }
-            }
-        }
-   });
 
    //Mouse
     xDiv.addEventListener('mousedown', function(e) {
