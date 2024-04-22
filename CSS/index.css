@@ -98,13 +98,15 @@
 }
 
 @media screen and (max-width: 770px) {
-    *{
+    
+     *{
         margin: 0;
         font-family: "Quantico", sans-serif;
         list-style: none;
         text-decoration: none;
-        position: relative;
+    
     }
+   
     
     html {
         height: 100%;
@@ -112,7 +114,7 @@
     }
     
     body {
-        background-color: #0D1116;
+        background: #0D1116;
         position: relative;
         min-height: 100%;
     }
@@ -143,19 +145,19 @@
         position: absolute;
         text-align: center;
         font-size: calc(1vw + 20px);
-        line-height: 70px;
+   
         width: 25%;
         left: 10%;
-    }
-    
-    #SpaceNews,
-    #Blog,
-    #Stream {
-        display: none;
     }
 
     #Logo {
         z-index: 9999999;
+    }
+
+    #SpaceNews,
+    #Blog,
+    #Stream {
+        display: none;
     }
     
     a, a:visited, a:active, a:hover, a:link {
@@ -182,11 +184,15 @@
     #duckGif {
         width: 100%;
     }
+    
+    #closeIcon {
+        display: none;
+    }
 
     .hamburger {
         position: absolute;
         right: 12%;
-
+    
         background-color: #141723;
         color: white;
         border: none;
@@ -196,4 +202,3 @@
 
    
 }
-

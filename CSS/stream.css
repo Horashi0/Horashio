@@ -196,9 +196,7 @@
         text-decoration: none;
     
     }
-    .menuIcon {
-        display: inline;
-    }
+   
     
     html {
         height: 100%;
@@ -395,6 +393,14 @@
         border-radius: 20px;
         background-color: #bb4430;  
         z-index: 999999999999999;
+    }
+
+    #closeIcon {
+        display: none;
+    }
+
+    #dropUp {
+        display: none;
     }
 }
 

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    
+
     document.getElementById("menuIcon").addEventListener("click", function() {
         document.getElementById("closeIcon").style.display = "block";
         document.getElementById("menuIcon").style.display = "none";
@@ -11,13 +11,29 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("menuIcon").style.display = "block";
         HideHamburgerMenus();
     });
+    
+
+    document.getElementById("dropDown").addEventListener("click", function() {
+        document.getElementById("dropUp").style.display = "block";
+        document.getElementById("dropDown").style.display = "none";
+
+        document.getElementById("dropDownArea").style.display = "block";
+    });
+    
+    document.getElementById("dropUp").addEventListener("click", function() {
+        document.getElementById("dropUp").style.display = "none";
+        document.getElementById("dropDown").style.display = "block";
+    
+        // Remove attribute instead of setting display to none because when screen resizes over 770, CSS cant style the dropDownArea
+        document.getElementById("dropDownArea").removeAttribute("style");
+    });
 })
 
 function DisplayHamburgerMenus()
 {
-    let SpaceNews = document.getElementById("SpaceNews");
-    let Blog = document.getElementById("Blog");
-    let Stream = document.getElementById("Stream")
+    let SpaceNews = document.getElementById('SpaceNews');
+    let Blog = document.getElementById('Blog');
+    let Stream = document.getElementById('Stream')
    
     SpaceNews.style.display = "block";
     SpaceNews.style.position = "absolute";
@@ -61,9 +77,9 @@ function HideHamburgerMenus()
 function RemoveAddElements() {
     const screenWidth = window.innerWidth;
     if (screenWidth > 770) {
-        document.getElementById("SpaceNews").removeAttribute("style");
-        document.getElementById("Blog").removeAttribute("style");
-        document.getElementById("Stream").removeAttribute("style");
+        document.getElementById("SpaceNews").removeAttribute('style');
+        document.getElementById("Blog").removeAttribute('style');
+        document.getElementById("Stream").removeAttribute('style');
     } 
 }
 
