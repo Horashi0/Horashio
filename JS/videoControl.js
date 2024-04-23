@@ -3,6 +3,9 @@ var idArray = [];
 var volumeState;
 var videoWidth;
 
+
+
+
 function addCheckboxListeners() {
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
 
@@ -187,127 +190,58 @@ function addElement(url, id) {
 
     styleContainers(parentElement, videoContainer, videoHandler, videoDiv, xDiv, titleDiv, overlayDiv, textNode, id, wrapper);
                     
+
+    
+
     addVideo(wrapper, url);
 
    setTimeout(function() {
     adjustAspectRatio(videoDiv);
    }, 0);
 
-   //Mouse
-    xDiv.addEventListener('mousedown', function(e) {
-        var videoId = videoDiv.parentNode.id.replace('Div', '');    
-        stopStream(videoId);
-        var checkbox = document.getElementById(videoId);
-        checkbox.checked = false;
-    })
+    
+   mouseTouchControl(videoDiv, videoHandler, xDiv, videoContainer, overlayDiv);
 
-   //Mobile
-    xDiv.addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        var videoId = videoDiv.parentNode.id.replace('Div', '');    
-        stopStream(videoId);
-        var checkbox = document.getElementById(videoId);
-        checkbox.checked = false;
-    })
+};
 
-    // Event listeners for dragging
-    var initialX, initialY;
-    var isDragging = false;
-
-    //Mouse
-    videoHandler.addEventListener('mousedown', function(e) {
-        videoContainer.appendChild(overlayDiv)
-        isDragging = true;
-        initialX = e.clientX - videoContainer.offsetLeft;
-        initialY = e.clientY - videoContainer.offsetTop;
-        videoContainer.classList.add('grabbed');
-        videoContainer.style.zIndex = highestZIndex++;
-        e.preventDefault();
-        e.stopPropagation();
-    });
-
-    //Touch
-    videoHandler.addEventListener('touchstart', function(e) {
-        videoContainer.appendChild(overlayDiv)
-        isDragging = true;
-        initialX = e.touches[0].clientX - videoContainer.offsetLeft;
-        initialY = e.touches[0].clientY - videoContainer.offsetTop;
-        videoContainer.classList.add('grabbed');
-        videoContainer.style.zIndex = highestZIndex++;
-        e.preventDefault();
-        e.stopPropagation();
-    });
-
-    //Mouse
-    document.addEventListener('mousemove', function(e) {
-        if (isDragging) {
-            var newX = e.clientX - initialX;
-            var newY = e.clientY - initialY;
-
-            newX = Math.max(0, Math.min(newX, document.getElementById("contentArea").offsetWidth - videoContainer.offsetWidth));
-            newY = Math.max(0, Math.min(newY, document.getElementById("contentArea").offsetHeight - videoContainer.offsetHeight));
-        
-            
-            videoContainer.style.left = newX + 'px';
-            videoContainer.style.top = newY + 'px';
-        }
-    });
-
-    //Touch
-    document.addEventListener('touchmove', function(e) {
-        if (isDragging) {
-            var newX = e.touches[0].clientX - initialX;
-            var newY = e.touches[0].clientY - initialY;
-
-            newX = Math.max(0, Math.min(newX, document.getElementById("contentArea").offsetWidth - videoContainer.offsetWidth));
-            newY = Math.max(0, Math.min(newY, document.getElementById("contentArea").offsetHeight - videoContainer.offsetHeight));
-        
-            
-            videoContainer.style.left = newX + 'px';
-            videoContainer.style.top = newY + 'px';
-        }
-    });
-
-    //Mouse
-    document.addEventListener('mouseup', function(e) {
-        if(isDragging) {
-            if(overlayDiv && overlayDiv.parentNode) {
-                overlayDiv.parentNode.removeChild(overlayDiv);
-            }
-            isDragging = false;
-            videoContainer.classList.remove('grabbed');            
-            e.preventDefault();
-            e.stopPropagation();
-        }
-        
-    });
-
-    //Touch
-    document.addEventListener('touchend', function(e) {
-        if(isDragging) {
-            if(overlayDiv && overlayDiv.parentNode) {
-                overlayDiv.parentNode.removeChild(overlayDiv);
-            }
-            isDragging = false;
-            videoContainer.classList.remove('grabbed');            
-            e.preventDefault();
-            e.stopPropagation();
-        }
-        
-    });
-
+function mouseTouchControl(videoDiv, videoHandler, xDiv, videoContainer, overlayDiv) {
     
 
-    videoDiv.addEventListener('mousedown', initResize, false);
+
+    videoHandler.addEventListener('touchstart', initDrag);
+    videoHandler.addEventListener('pointerdown', initDrag);
+    videoHandler.addEventListener('mousedown', initDrag);
+
     videoDiv.addEventListener('touchstart', initResize, false);
+    videoDiv.addEventListener('pointerdown', initResize, false);
+    videoDiv.addEventListener('mousedown', initResize, false);    
+
+    xDiv.addEventListener('touchstart', xControl);
+    xDiv.addEventListener('pointerdown', xControl);
+    xDiv.addEventListener('mousedown', xControl);
+
+
+    var initialX, initialY;
+    
+    function xControl(e) {
+        e.preventDefault();
+        
+        var videoId = videoDiv.parentNode.id.replace('Div', '');   
+        var checkbox = document.getElementById(videoId); 
+        
+        stopStream(videoId);
+        checkbox.checked = false;
+    }
 
     function initResize(e) {
         videoContainer.appendChild(overlayDiv)
         videoContainer.style.zIndex = highestZIndex++;
 
+        window.addEventListener('pointermove', Resize, false);
         window.addEventListener('mousemove', Resize, false);
         window.addEventListener('touchmove', Resize, false);
 
+        window.addEventListener('pointerup', stopResize, false);
         window.addEventListener('mouseup', stopResize, false);
         window.addEventListener('touchend', stopResize, false);
 
@@ -326,9 +260,11 @@ function addElement(url, id) {
             overlayDiv.parentNode.removeChild(overlayDiv);
         }
 
+        window.removeEventListener('pointermove', Resize, false);
         window.removeEventListener('mousemove', Resize, false);
         window.removeEventListener('touchmove', Resize, false);
         
+        window.removeEventListener('pointerup', stopResize, false);
         window.removeEventListener('mouseup', stopResize, false);
         window.removeEventListener('touchend', stopResize, false);
 
@@ -337,28 +273,74 @@ function addElement(url, id) {
     }
 
 
-    // Touch control code
-    document.addEventListener('touchstart', function(event) {
-        // Get the touch position relative to the viewport
-        var touchX = event.touches[0].clientX;
-        var touchY = event.touches[0].clientY;
+    function initDrag(e) {
         
-        // Perform actions based on touch position or other criteria
-        console.log('Touch started at X:', touchX, 'Y:', touchY);
-    });
+        videoContainer.appendChild(overlayDiv);
+        if(e.type === "pointerdown" || e.type === "mousedown") {
+            initialX = e.clientX - videoContainer.offsetLeft;
+            initialY = e.clientY - videoContainer.offsetTop;
+        } else if (e.type === "touchstart") {
+            initialX = e.touches[0].clientX - videoContainer.offsetLeft;
+            initialY = e.touches[0].clientY - videoContainer.offsetTop;
+        }
+        console.log(e.type);
+        
+        videoContainer.classList.add("grabbed");
+        videoContainer.style.zIndex = highestZIndex++;
 
-    document.addEventListener('touchmove', function(event) {
-        // Prevent default behavior to disable scrolling
-        event.preventDefault();
+
+        document.addEventListener('touchmove', Drag, { passive: false});
+        document.addEventListener('pointermove', Drag);
+        document.addEventListener('mousemove', Drag);
+    
+        document.addEventListener('touchend', stopDrag);
+        document.addEventListener('pointerup', stopDrag);
+        document.addEventListener('mouseup', stopDrag);
+
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    function Drag(e) {
+        if (e.type === "pointermove" || e.type === "touchmove" || e.type === "mousemove") {
+            var newX, newY;
+            if (e.type === "pointermove" || e.type === "mousemove") {
+                newX = e.clientX - initialX;
+                newY = e.clientY - initialY;
+            } else if (e.type == "touchmove") {
+                newX = e.touches[0].clientX - initialX;
+                newY = e.touches[0].clientY - initialY;
+            }
+            console.log(e.type);
+
+            newX = Math.max(0, Math.min(newX, document.getElementById("contentArea").offsetWidth - videoContainer.offsetWidth));
+            newY = Math.max(0, Math.min(newY, document.getElementById("contentArea").offsetHeight - videoContainer.offsetHeight));
         
-        // Get the new touch position relative to the viewport
-        var touchX = event.touches[0].clientX;
-        var touchY = event.touches[0].clientY;
+            videoContainer.style.left = newX + 'px';
+            videoContainer.style.top = newY + 'px';
+        }
+    }
+
+    function stopDrag(e) {
+        if (e.type === "pointerup" || e.type === "touchend" || e.type === "mouseup") {
+            if (overlayDiv && overlayDiv.parentNode) {
+                overlayDiv.parentNode.removeChild(overlayDiv);
+            }
+            videoContainer.classList.remove('grabbed');
+
+            document.removeEventListener('touchmove', Drag);
+            document.removeEventListener('pointermove', Drag);
+            document.removeEventListener('mousemove', Drag);
         
-        // Perform actions based on touch position or other criteria
-        console.log('Touch moved to X:', touchX, 'Y:', touchY);
-    });
-};
+            document.removeEventListener('touchend', stopDrag);
+            document.removeEventListener('pointerup', stopDrag);
+            document.removeEventListener('mouseup', stopDrag);
+
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    }
+}
 
 function adjustAspectRatio(container) {
     var width = container.offsetWidth;
@@ -407,9 +389,7 @@ function resizeElements() {
 
         var iframe = container.querySelector("iframe");
         iframe.style.width = "100%"; 
-        iframe.style.height = "100%"; 
-
-        
+        iframe.style.height = "100%";         
     });
 }
 
