@@ -200,11 +200,11 @@ function addElement(url, id) {
    }, 0);
 
     
-   mouseTouchControl(videoDiv, videoHandler, xDiv, videoContainer, overlayDiv);
+   videoControl(videoDiv, videoHandler, xDiv, videoContainer, overlayDiv, id);
 
 };
 
-function mouseTouchControl(videoDiv, videoHandler, xDiv, videoContainer, overlayDiv) {
+function videoControl(videoDiv, videoHandler, xDiv, videoContainer, overlayDiv, id) {
     
 
 
@@ -251,7 +251,10 @@ function mouseTouchControl(videoDiv, videoHandler, xDiv, videoContainer, overlay
 
     function Resize(e) {
         var clientX = e.clientX || e.touches[0].clientX;
-        videoContainer.style.width = (clientX - videoContainer.offsetLeft) + 'px';
+        var parentWidth = videoContainer.parentNode.offsetWidth;
+
+        var percentageWidth = ((clientX - videoContainer.offsetLeft) / parentWidth) * 100
+        videoContainer.style.width = percentageWidth + '%';
         adjustAspectRatio(videoDiv);
     }
 
@@ -283,7 +286,6 @@ function mouseTouchControl(videoDiv, videoHandler, xDiv, videoContainer, overlay
             initialX = e.touches[0].clientX - videoContainer.offsetLeft;
             initialY = e.touches[0].clientY - videoContainer.offsetTop;
         }
-        console.log(e.type);
         
         videoContainer.classList.add("grabbed");
         videoContainer.style.zIndex = highestZIndex++;
@@ -311,13 +313,23 @@ function mouseTouchControl(videoDiv, videoHandler, xDiv, videoContainer, overlay
                 newX = e.touches[0].clientX - initialX;
                 newY = e.touches[0].clientY - initialY;
             }
-            console.log(e.type);
+            
+            var contentAreaWidth = document.getElementById("contentArea").offsetWidth;
+            var contentAreaHeight = document.getElementById("contentArea").offsetHeight;
+           
+            var streamContainerWidth = document.getElementById(id).offsetWidth;
+            var streamContainerHeight = document.getElementById(id).offsetHeight;
+      
 
-            newX = Math.max(0, Math.min(newX, document.getElementById("contentArea").offsetWidth - videoContainer.offsetWidth));
-            newY = Math.max(0, Math.min(newY, document.getElementById("contentArea").offsetHeight - videoContainer.offsetHeight));
+            var leftPercentage = (newX / contentAreaWidth) * 100;
+            var topPercentage = (newY / contentAreaHeight) * 100;
+
+
+            leftPercentage = Math.max(0, Math.min(leftPercentage, 100 - (streamContainerWidth / contentAreaWidth) * 100));
+            topPercentage = Math.max(0, Math.min(topPercentage, 100 - (streamContainerHeight / contentAreaHeight) * 100));
         
-            videoContainer.style.left = newX + 'px';
-            videoContainer.style.top = newY + 'px';
+            videoContainer.style.left = leftPercentage + '%';
+            videoContainer.style.top = topPercentage + '%';
         }
     }
 
@@ -352,7 +364,6 @@ function applyStreamWidth() {
     var streamWidthInput = document.getElementById("streamWidth");
     streamWidthInput.addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
-            console.log("LORDA MERCY!");
             event.preventDefault();
             var width = parseFloat(streamWidthInput.value);
             if(width >= 0 && width <= 100) {
@@ -379,18 +390,26 @@ function applyStreamWidth() {
 }
 
 function resizeElements() {
+ 
     var streamContainers = document.querySelectorAll(".streamContainers");
     var contentAreaWidth = document.getElementById("contentArea").offsetWidth;
-    var contentAreaHeight = document.getElementById("contentArea").offsetHeight;
+    
 
     streamContainers.forEach(function(container) {
+
         var videoDiv = container.querySelector(".videoDiv");
+
         adjustAspectRatio(videoDiv);
 
+        
+
         var iframe = container.querySelector("iframe");
-        iframe.style.width = "100%"; 
-        iframe.style.height = "100%";         
-    });
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";  
+
+        var percentageLeft = (container.offsetLeft / contentAreaWidth) * 100;
+        container.style.left = percentageLeft + "%";
+    }); 
 }
 
 window.addEventListener('load', function() {
