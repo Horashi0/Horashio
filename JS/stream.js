@@ -27,6 +27,21 @@ document.addEventListener("DOMContentLoaded", function() {
         // Remove attribute instead of setting display to none because when screen resizes over 770, CSS cant style the dropDownArea
         document.getElementById("dropDownArea").removeAttribute("style");
     });
+
+    document.getElementById("dropUpControl").addEventListener("click", function() {
+        document.getElementById("dropUpControl").style.display = "none";
+        document.getElementById("dropDownControl").style.display = "block";
+        
+        document.getElementById("controlBar").style.display = "grid";
+
+    });
+
+    document.getElementById("dropDownControl").addEventListener("click", function() {
+        document.getElementById("dropUpControl").style.display = "block";
+        document.getElementById("dropDownControl").style.display = "none";
+        
+        document.getElementById("controlBar").style.display = "none";
+    });
 })
 
 function DisplayHamburgerMenus()

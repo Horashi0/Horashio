@@ -206,8 +206,6 @@ function addElement(url, id) {
 
 function videoControl(videoDiv, videoHandler, xDiv, videoContainer, overlayDiv, id) {
     
-
-
     videoHandler.addEventListener('touchstart', initDrag);
     videoHandler.addEventListener('pointerdown', initDrag);
     videoHandler.addEventListener('mousedown', initDrag);

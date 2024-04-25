@@ -72,6 +72,7 @@
     {
         position: absolute;
         display: grid;
+        display: none;
 
         grid-template-columns: 33.3% 33.3% 33.3%;
 
@@ -235,6 +236,39 @@
         z-index: 9999999;
     }
 
+    .dropUpControl {
+        position: absolute;
+     
+        width: 50%;
+        height: 2%;
+        min-height: 20px;
+
+        bottom: 0;
+        left: 25%;
+
+        cursor: pointer;
+        background-color: hsl(221, 56%, 41%);
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+
+    .dropDownControl {
+        position: absolute;
+     
+        display: none;
+
+        width: 50%;
+        height: 15%;
+        min-height: 20px;
+
+        bottom: 0;
+        left: 25%;
+
+        cursor: pointer;
+        background-color: hsl(221, 56%, 41%);
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
 
 }
 
