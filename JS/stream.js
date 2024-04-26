@@ -42,6 +42,21 @@ document.addEventListener("DOMContentLoaded", function() {
         
         document.getElementById("controlBar").style.display = "none";
     });
+
+    document.getElementById("dropUpControlArea").addEventListener("click", function() {
+        document.getElementById("dropUpControlArea").style.display = "none";
+        document.getElementById("dropDownControlArea").style.display = "block";
+        
+        document.getElementById("dropDownArea").style.display = "block";
+
+    });
+
+    document.getElementById("dropDownControlArea").addEventListener("click", function() {
+        document.getElementById("dropUpControlArea").style.display = "block";
+        document.getElementById("dropDownControlArea").style.display = "none";
+        
+        document.getElementById("dropDownArea").style.display = "none";
+    });
 })
 
 function DisplayHamburgerMenus()
@@ -92,9 +107,19 @@ function HideHamburgerMenus()
 function RemoveAddElements() {
     const screenWidth = window.innerWidth;
     if (screenWidth > 770) {
+        // Reset nav text
         document.getElementById("SpaceNews").removeAttribute('style');
         document.getElementById("Blog").removeAttribute('style');
         document.getElementById("Stream").removeAttribute('style');
+
+ 
+        document.getElementById("dropDownArea").removeAttribute('style');
+
+        document.getElementById("dropDown").removeAttribute("style");
+        document.getElementById("dropUp").removeAttribute("style");
+
+        document.getElementById("closeIcon").removeAttribute("style");
+        document.getElementById("menuIcon").removeAttribute("style");
     } 
 }
 

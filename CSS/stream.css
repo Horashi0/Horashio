@@ -72,7 +72,7 @@
     {
         position: absolute;
         display: grid;
-        display: none;
+   
 
         grid-template-columns: 33.3% 33.3% 33.3%;
 
@@ -117,33 +117,44 @@
         top: max(90px, 3%);
         bottom: max(30px, 2%);
         left: 1%;
+
+        border-radius: 20px;
     }
 
     .dropDownArea {
-        display: block;
+   
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        left: 5%;
+        bottom: 0%;
+
+        z-index: 999999999;
+        display: none;
     }
     
     .volumeIcon {
-        font-size: calc(2vw + 25px) !important;
+        font-size: 50px !important;
         position: absolute;
-        bottom: 1%;
-        left: calc(4vw + 80px);
+        bottom: 5%;
+        right: 5%;
         cursor: pointer;
         user-select: none;
         display: none;
         z-index: 9999999;
-        color: #bb4430;
+        color: #060E1D;
     }
     
     .refreshIcon {
-        font-size: calc(2vw + 25px) !important;
+        font-size: 50px !important;
         position: absolute;
-        bottom: 1%;
-        left: calc(.7vw + 50px);
+        bottom: 5%;
+        left: 5%;
         cursor: pointer;
         user-select: none;
         z-index: 9999999;
-        color: #bb4430;
+        color: #060E1D;
+
     }
     
     /* Hide the number input arrows */
@@ -161,19 +172,20 @@
     
     #streamWidth {
         position: absolute;
-        left: calc(1vw + 60px);
-        bottom: calc(2.5vw + 50px);
+        left: 25%;
+        top: 10%;
         
-        height: 30px;
-        width: 60px;
+        height: 30%;
+        width: 50%;
     
-        background-color: #1f2436;
+        background-color: #060E1D;
         color: white;
         outline: none;
         border: none;
-
-        border-radius: 15px;
+    
+       
         z-index: 99999;
+        border-radius: 20px;
     }
 
     .closeIcon,
@@ -200,7 +212,7 @@
         width: 100%;
         height: 20px;
         cursor: grab;
-        background-color: #D53155;
+        background-color: #1f4474;
         display: flex;
     }
 
@@ -217,6 +229,7 @@
         height: 20px;
         width: 50%;
         text-align: center;
+        color: white;
     }
 
     .xDiv {
@@ -225,6 +238,7 @@
         position: absolute;
         right: 0;
         cursor: pointer;
+        color: white;
     }
 
     .overlayDiv {
@@ -238,7 +252,8 @@
 
     .dropUpControl {
         position: absolute;
-     
+        display: none;
+
         width: 50%;
         height: 2%;
         min-height: 20px;
@@ -247,29 +262,62 @@
         left: 25%;
 
         cursor: pointer;
-        background-color: hsl(221, 56%, 41%);
+        background-color: #142545;
+        /*background-color: #bb4430;*/
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
+        z-index: 99999;
     }
 
     .dropDownControl {
         position: absolute;
      
-        display: none;
-
         width: 50%;
-        height: 15%;
-        min-height: 20px;
-
+        min-height: 150px;
+        
         bottom: 0;
         left: 25%;
 
         cursor: pointer;
-        background-color: hsl(221, 56%, 41%);
+        background-color: #142545;
+        /*background-color: #bb4430;*/
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
+        z-index: 99999;
     }
 
+    .dropDownControlArea {
+        position: absolute;
+        display: none;
+        width: 120px;
+        height: 140px;
+        left: 5%;
+        bottom: 0%;
+
+        cursor: pointer;
+        background-color: #142545;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        z-index: 99999;
+    }
+
+    .dropUpControlArea {
+        position: absolute;
+        
+        width: 120px;
+        height: 2%;
+        min-height: 20px;
+
+        left: 5%;
+        bottom: 0%;
+        
+        cursor: pointer;
+        background-color: #142545;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        z-index: 99999;
+    }
+   
 }
 
 @media screen and (max-width: 770px) {
@@ -291,6 +339,7 @@
         background: #0D1116;
         position: relative;
         min-height: 100%;
+        overflow: none;
     }
     
     .nav {
@@ -435,13 +484,13 @@
         height: 30%;
         width: 50%;
     
-        background-color: #1f2436;
+        background-color: #060E1D;
         color: white;
         outline: none;
         border: none;
     
         z-index: 99999;
-        
+        border-radius: 20px;
     }
 
     .hamburger {
@@ -475,7 +524,7 @@
         right: 5%;
 
         border-radius: 20px;
-        background-color: #bb4430;  
+        background-color: #1f4474;
         z-index: 999999999999999;
     }
 
@@ -500,7 +549,7 @@
         width: 100%;
         height: 20px;
         cursor: grab;
-        background-color: #D53155;
+        background-color: #1f4474;
         display: flex;
     }
 
@@ -517,6 +566,7 @@
         height: 20px;
         width: 50%;
         text-align: center;
+        color: white;
     }
 
     .xDiv {
@@ -525,6 +575,7 @@
         position: absolute;
         right: 0;
         cursor: pointer;
+        color: white;
     }
 
     .overlayDiv {
@@ -535,5 +586,39 @@
         height: 100%;
         z-index: 9999;
     }
+
+    .dropUpControl {
+        position: absolute;
+        display: none;
+
+        width: 100%;
+        height: 2%;
+        min-height: 20px;
+
+        bottom: 0;
+   
+
+        cursor: pointer;
+
+        background-color: #142545;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+
+    .dropDownControl {
+        position: absolute;
+        width: 100%;
+        height: 15%;
+        min-height: 150px;
+    
+        bottom: 0;
+    
+        cursor: pointer;
+ 
+        background-color: #142545;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+    }
+    
 }
 

@@ -28,7 +28,7 @@
                 <a href="#" id="Blog">Blog</a>
                 <a href="../HTML/stream.html" id="Stream">Stream</a>
             </div>
-            <button class="expand">
+            <button class="expand" id="expand">
                 <i class="dropDown material-symbols-outlined" id="dropDown">expand_more</i>
                 <i class="dropUp material-symbols-outlined" id="dropUp">expand_less</i>
             </button>
@@ -39,6 +39,9 @@
             </button>
         </div>
         <div class="contentArea" id="contentArea">
+
+            <div class="dropUpControlArea" id="dropUpControlArea"></div>
+            <div class="dropDownControlArea" id="dropDownControlArea"></div>
 
             <div class="dropDownArea" id="dropDownArea">
                 <input type="number" id="streamWidth" min="0" max="100" placeholder="Width %">
@@ -54,7 +57,7 @@
             
             <div class="dropUpControl" id="dropUpControl"></div>
             <div class="dropDownControl" id="dropDownControl"></div>
-           <div class="controlBar" id="controlBar">                
+           <div class="controlBar" id="controlBar">
                 <div class="checkboxWrapper">
                     <div class="Nerdle checkboxContainer">
                         <input type="checkbox" id="Nerdle" name="Nerdle" value="0EZQaF_liXw" onclick="addElement(this.value, this.id)">
