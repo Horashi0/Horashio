@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         document.getElementById("dropDownArea").style.display = "none";
     });
+    
 })
 
 function DisplayHamburgerMenus()
@@ -111,9 +112,6 @@ function RemoveAddElements() {
         document.getElementById("SpaceNews").removeAttribute('style');
         document.getElementById("Blog").removeAttribute('style');
         document.getElementById("Stream").removeAttribute('style');
-
- 
-        document.getElementById("dropDownArea").removeAttribute('style');
 
         document.getElementById("dropDown").removeAttribute("style");
         document.getElementById("dropUp").removeAttribute("style");

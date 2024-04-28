@@ -253,7 +253,9 @@ function videoControl(videoDiv, videoHandler, xDiv, videoContainer, overlayDiv, 
 
         var percentageWidth = ((clientX - videoContainer.offsetLeft) / parentWidth) * 100
         videoContainer.style.width = percentageWidth + '%';
+        var containerTop = videoDiv.parentElement.style.top;
         adjustAspectRatio(videoDiv);
+        videoDiv.parentElement.style.top = containerTop;
     }
 
     function stopResize(e) {
@@ -353,9 +355,30 @@ function videoControl(videoDiv, videoHandler, xDiv, videoContainer, overlayDiv, 
 }
 
 function adjustAspectRatio(container) {
+    var parentElement = container.parentElement;
+    var originalHeight = parseFloat(parentElement.style.height.replace('%', ''));
+
     var width = container.offsetWidth;
-    var height = width * (9/16);
-    container.style.height = height + 'px';
+    var contentAreaHeight = document.getElementById("contentArea").offsetHeight;
+    
+
+    var height = width * (9 / 16);
+    var percentageHeight = (height / contentAreaHeight) * 100;
+
+    parentElement.style.height = percentageHeight + '%';
+    
+
+    var newHeight = parseFloat(parentElement.style.height.replace('%', ''));
+    var percentageTop = newHeight - originalHeight;
+    console.log(percentageTop)
+    var containerTop = parseFloat(parentElement.style.top.replace('%', ''));
+
+    if(containerTop > 0 ) {
+        percentageTop = percentageTop + containerTop;
+        parentElement.style.top = percentageTop + '%';
+    }
+
+   
 }
 
 function applyStreamWidth() {
@@ -391,22 +414,22 @@ function resizeElements() {
  
     var streamContainers = document.querySelectorAll(".streamContainers");
     var contentAreaWidth = document.getElementById("contentArea").offsetWidth;
-    
+    var contentAreaHeight = document.getElementById("contentArea").offsetHeight;
 
     streamContainers.forEach(function(container) {
 
         var videoDiv = container.querySelector(".videoDiv");
-
         adjustAspectRatio(videoDiv);
-
         
-
         var iframe = container.querySelector("iframe");
         iframe.style.width = "100%";
         iframe.style.height = "100%";  
 
         var percentageLeft = (container.offsetLeft / contentAreaWidth) * 100;
+      
+
         container.style.left = percentageLeft + "%";
+    
     }); 
 }
 
