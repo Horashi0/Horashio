@@ -195,14 +195,6 @@ function addElement(url, id) {
 
     addVideo(wrapper, url);
 
-
-     // Set the vertical position based on stream size
-     var streamContainers = document.querySelectorAll(".streamContainers");
-     var totalStreamHeight = Array.from(streamContainers).reduce((acc, container) => acc + container.offsetHeight, 0);
-     var verticalPosition = (totalStreamHeight / document.getElementById("contentArea").offsetHeight) * 100;
-     videoContainer.style.top = verticalPosition + '%';
-
-
    setTimeout(function() {
     adjustAspectRatio(videoDiv);
    }, 0);
@@ -261,7 +253,9 @@ function videoControl(videoDiv, videoHandler, xDiv, videoContainer, overlayDiv, 
 
         var percentageWidth = ((clientX - videoContainer.offsetLeft) / parentWidth) * 100
         videoContainer.style.width = percentageWidth + '%';
+        var containerTop = videoDiv.parentElement.style.top;
         adjustAspectRatio(videoDiv);
+        videoDiv.parentElement.style.top = containerTop;
     }
 
     function stopResize(e) {
@@ -360,21 +354,6 @@ function videoControl(videoDiv, videoHandler, xDiv, videoContainer, overlayDiv, 
     }
 }
 
-function adjustVerticalPosition() {
-    var streamContainers = document.querySelectorAll(".streamContainers");
-    var totalHeight = document.getElementById("contentArea").offsetHeight;
-    var cumulativeHeight = 0;
-
-    streamContainers.forEach(function(container) {
-        var heightPercentage = (container.offsetHeight / totalHeight) * 100;
-        var topPercentage = (cumulativeHeight / totalHeight) * 100;
-        
-        container.style.top = topPercentage + '%';
-        cumulativeHeight += container.offsetHeight;
-    });
-}
-
-
 function adjustAspectRatio(container) {
     var parentElement = container.parentElement;
     var originalHeight = parseFloat(parentElement.style.height.replace('%', ''));
@@ -386,7 +365,20 @@ function adjustAspectRatio(container) {
     var height = width * (9 / 16);
     var percentageHeight = (height / contentAreaHeight) * 100;
 
-    parentElement.style.height = percentageHeight + '%'; 
+    parentElement.style.height = percentageHeight + '%';
+    
+
+    var newHeight = parseFloat(parentElement.style.height.replace('%', ''));
+    var percentageTop = newHeight - originalHeight;
+    console.log(percentageTop)
+    var containerTop = parseFloat(parentElement.style.top.replace('%', ''));
+
+    if(containerTop > 0 ) {
+        percentageTop = percentageTop + containerTop;
+        parentElement.style.top = percentageTop + '%';
+    }
+
+   
 }
 
 function applyStreamWidth() {
@@ -419,8 +411,7 @@ function applyStreamWidth() {
 }
 
 function resizeElements() {
-    adjustVerticalPosition();
-
+ 
     var streamContainers = document.querySelectorAll(".streamContainers");
     var contentAreaWidth = document.getElementById("contentArea").offsetWidth;
     var contentAreaHeight = document.getElementById("contentArea").offsetHeight;
