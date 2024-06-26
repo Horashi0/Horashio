@@ -154,9 +154,9 @@
         z-index: 9999999;
     }
 
-    #SpaceNews,
-    #Blog,
-    #Stream {
+    .nav.right a#SpaceNews,
+    .nav.right a#About,
+    .nav.right a#Stream {
         display: none;
     }
     

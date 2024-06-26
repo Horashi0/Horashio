@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
 function DisplayHamburgerMenus()
 {
     let SpaceNews = document.getElementById('SpaceNews');
-    let Blog = document.getElementById('Blog');
+    let About = document.getElementById('About');
     let Stream = document.getElementById('Stream')
    
     SpaceNews.style.display = "block";
@@ -76,15 +76,15 @@ function DisplayHamburgerMenus()
     SpaceNews.style.color = "#F5F2F8";
     SpaceNews.style.zIndex = "99999999";
 
-    Blog.style.display = "block";
-    Blog.style.position = "absolute";
-    Blog.style.right = "20px";
-    Blog.style.top = "140px";
-    Blog.style.paddingTop = "20px";
-    Blog.style.paddingBottom = "20px";
-    Blog.style.fontSize = "30px";
-    Blog.style.color = "#F5F2F8";
-    Blog.style.zIndex = "99999999";
+    About.style.display = "block";
+    About.style.position = "absolute";
+    About.style.right = "20px";
+    About.style.top = "140px";
+    About.style.paddingTop = "20px";
+    About.style.paddingBottom = "20px";
+    About.style.fontSize = "30px";
+    About.style.color = "#F5F2F8";
+    About.style.zIndex = "99999999";
 
 
     Stream.style.display = "block";
@@ -101,7 +101,7 @@ function DisplayHamburgerMenus()
 function HideHamburgerMenus()
 {
     document.getElementById("SpaceNews").style.display = "none";
-    document.getElementById("Blog").style.display = "none";
+    document.getElementById("About").style.display = "none";
     document.getElementById("Stream").style.display = "none";
 }
 
@@ -110,7 +110,7 @@ function RemoveAddElements() {
     if (screenWidth > 770) {
         // Reset nav text
         document.getElementById("SpaceNews").removeAttribute('style');
-        document.getElementById("Blog").removeAttribute('style');
+        document.getElementById("About").removeAttribute('style');
         document.getElementById("Stream").removeAttribute('style');
 
         document.getElementById("dropDown").removeAttribute("style");
