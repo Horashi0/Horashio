@@ -63,8 +63,8 @@ document.addEventListener("DOMContentLoaded", function() {
 function DisplayHamburgerMenus()
 {
     let SpaceNews = document.getElementById('SpaceNews');
-    let About = document.getElementById('About');
     let Stream = document.getElementById('Stream')
+    let About = document.getElementById('About');
    
     SpaceNews.style.display = "block";
     SpaceNews.style.position = "absolute";
@@ -76,33 +76,32 @@ function DisplayHamburgerMenus()
     SpaceNews.style.color = "#F5F2F8";
     SpaceNews.style.zIndex = "99999999";
 
-    About.style.display = "block";
-    About.style.position = "absolute";
-    About.style.right = "20px";
-    About.style.top = "140px";
-    About.style.paddingTop = "20px";
-    About.style.paddingBottom = "20px";
-    About.style.fontSize = "30px";
-    About.style.color = "#F5F2F8";
-    About.style.zIndex = "99999999";
-
-
     Stream.style.display = "block";
     Stream.style.position = "absolute";
     Stream.style.right = "20px";
-    Stream.style.top = "210px";
+    Stream.style.top = "140px";
     Stream.style.paddingTop = "20px";
     Stream.style.paddingBottom = "20px";
     Stream.style.fontSize = "30px";
     Stream.style.color = "#F5F2F8";
     Stream.style.zIndex = "99999999";
+
+    About.style.display = "block";
+    About.style.position = "absolute";
+    About.style.right = "20px";
+    About.style.top = "210px";
+    About.style.paddingTop = "20px";
+    About.style.paddingBottom = "20px";
+    About.style.fontSize = "30px";
+    About.style.color = "#F5F2F8";
+    About.style.zIndex = "99999999";
 }
 
 function HideHamburgerMenus()
 {
     document.getElementById("SpaceNews").style.display = "none";
-    document.getElementById("About").style.display = "none";
     document.getElementById("Stream").style.display = "none";
+    document.getElementById("About").style.display = "none";
 }
 
 function RemoveAddElements() {
@@ -110,8 +109,8 @@ function RemoveAddElements() {
     if (screenWidth > 770) {
         // Reset nav text
         document.getElementById("SpaceNews").removeAttribute('style');
-        document.getElementById("About").removeAttribute('style');
         document.getElementById("Stream").removeAttribute('style');
+        document.getElementById("About").removeAttribute('style');
 
         document.getElementById("dropDown").removeAttribute("style");
         document.getElementById("dropUp").removeAttribute("style");
