@@ -120,6 +120,51 @@ function RemoveAddElements() {
     } 
 }
 
+async function FetchCheckboxData() {
+    try {
+        const response = await fetch("../Json/stream.json");
+        const data = await response.json();
+        return data;
+    } catch(error) {
+        console.error("Error fetching checkbox data, please contact @Horashi0 on Twitter, ", error);
+        return [];
+    }
+}
+
+async function DisplayCheckboxes() {
+    const checkboxesData = await FetchCheckboxData();
+    const controlBar = document.getElementById("controlBar");
+
+    checkboxesData.forEach(checkbox => {
+        const checkboxWrapper = document.createElement("div");
+        checkboxWrapper.classList.add("checkboxWrapper");
+
+        //Creating the checkbox box and giving it a class
+        const checkboxContainer = document.createElement("div");
+        checkboxContainer.classList.add(`${checkbox.name}`);
+        checkboxContainer.classList.add("checkboxContainer");
+
+        //Make the checkbox
+        const input = document.createElement("input");
+        input.type = "checkbox";
+        input.id = checkbox.id;
+        input.name = checkbox.name;
+        input.value = checkbox.value;
+        input.onclick = function() {addElement(this.value, this.id)};
+
+        // Create the label
+        const label = document.createElement("label");
+        label.htmlFor = checkbox.id;
+        label.textContent = checkbox.name;
+
+        // Attach everything together
+        checkboxContainer.appendChild(input);
+        checkboxContainer.appendChild(label);
+        checkboxWrapper.appendChild(checkboxContainer);
+        controlBar.appendChild(checkboxWrapper);
+    })
+}
+
 window.addEventListener("resize", RemoveAddElements);
 window.addEventListener("load", function() {
     RemoveAddElements();  
