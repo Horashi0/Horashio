@@ -1,10 +1,7 @@
-var highestZIndex = 1;
+/*var highestZIndex = 1;
 var idArray = [];
 var volumeState;
 var videoWidth;
-
-
-
 
 function addCheckboxListeners() {
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -91,6 +88,51 @@ function volume() {
         })
 
     })
+}
+
+function videoHandleModifier() {
+    var showVideoHandler = document.getElementById("showVideoHandler");
+    var hideVideoHandler = document.getElementById("hideVideoHandler");
+      
+
+    showVideoHandler.style.display = "none";
+    hideVideoHandler.style.display = "block";
+
+    showVideoHandler.addEventListener("click", function() {
+        showVideoHandler.style.display = "none";
+        hideVideoHandler.style.display = "block";
+
+        var streams = document.getElementsByClassName("streamContainers");
+        for (var i = 0; i < streams.length; i++) {
+            var streamId = streams[i].id;
+            var videoContainer = document.getElementById(streamId);
+
+            if(videoContainer) {
+                if(videoContainer.parentNode) {
+                    var videoHandler = videoContainer.querySelector(".videoHandler"); // Select the child by class name
+                    videoHandler.style.display = "block";
+                }
+            }
+        }
+    });
+
+    hideVideoHandler.addEventListener("click", function() {
+        showVideoHandler.style.display = "block";
+        hideVideoHandler.style.display = "none";
+
+        var streams = document.getElementsByClassName("streamContainers");
+        for (var i = 0; i < streams.length; i++) {
+            var streamId = streams[i].id;
+            var videoContainer = document.getElementById(streamId);
+
+            if(videoContainer) {
+                if(videoContainer.parentNode) {
+                    var videoHandler = videoContainer.querySelector(".videoHandler"); // Select the child by class name
+                    videoHandler.style.display = "none";
+                }
+            }
+        }
+    });
 }
 
 function stopStream(id) {
@@ -189,8 +231,6 @@ function addElement(url, id) {
     var wrapper = document.createElement('div');
 
     styleContainers(parentElement, videoContainer, videoHandler, videoDiv, xDiv, titleDiv, overlayDiv, textNode, id, wrapper);
-                    
-
     
 
     addVideo(wrapper, url);
@@ -377,8 +417,6 @@ function adjustAspectRatio(container) {
         percentageTop = percentageTop + containerTop;
         parentElement.style.top = percentageTop + '%';
     }
-
-   
 }
 
 function applyStreamWidth() {
@@ -404,6 +442,8 @@ function applyStreamWidth() {
                 } else {
                     alert("Dont be a numpty, please enter numbers 0-100");
                 }
+            } else {
+                alert("Dont be a numpty, please enter numbers 0-100");
             }
             
         }
@@ -411,7 +451,6 @@ function applyStreamWidth() {
 }
 
 function resizeElements() {
- 
     var streamContainers = document.querySelectorAll(".streamContainers");
     var contentAreaWidth = document.getElementById("contentArea").offsetWidth;
     var contentAreaHeight = document.getElementById("contentArea").offsetHeight;
@@ -429,7 +468,6 @@ function resizeElements() {
       
 
         container.style.left = percentageLeft + "%";
-    
     }); 
 }
 
@@ -437,7 +475,10 @@ window.addEventListener('load', function() {
     addCheckboxListeners();
     refresh();
     volume();
+    videoHandleModifier();
     applyStreamWidth();
 }); 
 
 window.addEventListener('resize', resizeElements);
+
+*/

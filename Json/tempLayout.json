@@ -1,0 +1,43 @@
+{
+    "customCheckboxes": [{
+        "state": true,
+        "checkbox1": [{
+            "checked": "True",
+            "Title": "Yoskianator",
+            "Id": "idnviasuidno",
+            "Width": "25%",
+            "yAxis": "400px",
+            "xAxis": "200px"
+        }],
+        "checkbox2": [{
+            "checked": "False",
+            "Title": "Incatern",
+            "Id": "209fn23-2r#@",
+            "Width": "25%",
+            "yAxis": "400px",
+            "xAxis": "200px"
+        }]
+    }],
+    "streams": [{
+        "state": true,
+        "Stream1": [{
+            "Name": "SpaceCoast",
+            "Width": "25%",
+            "yAxis": "400px",
+            "xAxis": "200px"
+        }],
+        "Stream2": [{
+            "Name": "McGregor",
+            "Width": "25%",
+            "yAxis": "400px",
+            "xAxis": "200px"
+        }],
+        "Stream3": [{
+            "Name": "Sentinel",
+            "Width": "25%",
+            "yAxis": "400px",
+            "xAxis": "200px"
+        }]
+    }]
+
+}

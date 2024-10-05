@@ -77,12 +77,20 @@
         font-size: 3vw;
         color: white;
     }
-    .duckGifDiv {
+    .duckGifDiv1 {
         position: absolute;
         width: 10%;
         height: 30%;
         bottom: 20%;
         left: 10%;
+    }
+
+    .duckGifDiv2 {
+        position: absolute;
+        width: 10%;
+        height: 30%;
+        bottom: 20%;
+        left: 30%;
     }
 
     #duckGif {
@@ -94,7 +102,6 @@
     .hamburger {
         display: none;
     } 
-
 }
 
 @media screen and (max-width: 770px) {
