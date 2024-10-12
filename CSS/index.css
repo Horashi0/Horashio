@@ -229,5 +229,25 @@
         cursor: pointer;
     }
 
-   
+    #RulesText {
+        top: 20%;
+        font-size: 23px;
+        color: white;
+    
+        position: absolute;
+        left: 5%;
+    }
+
+    #bulletPoints {
+        position: absolute;
+        top: 30%;
+        left: 5%;
+
+        width: 90%;
+        height: 50%;
+        overflow-wrap: break-word;
+        font-size: 10px;
+
+        color: white;
+    }
 }
