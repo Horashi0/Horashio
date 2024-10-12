@@ -102,6 +102,28 @@
     .hamburger {
         display: none;
     } 
+
+    #RulesText {
+        top: 20%;
+        font-size: 3vw;
+        color: white;
+    
+        position: absolute;
+        left: 5%;
+    }
+
+    #bulletPoints {
+        position: absolute;
+        top: 30%;
+        left: 5%;
+
+        width: 90%;
+        height: 50%;
+        overflow-wrap: break-word;
+        font-size: 15px;
+
+        color: white;
+    }
 }
 
 @media screen and (max-width: 770px) {
