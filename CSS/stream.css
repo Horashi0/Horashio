@@ -348,7 +348,7 @@
 
     .volumeIcon {
         font-size: 50px !important;
-      
+        
         width: 50px;
         height: 50px;
         
@@ -356,6 +356,7 @@
         user-select: none;
         display: none;
         color: #060E1D;
+        z-index: 9999999999999999999;
     }
 
     .refreshButton {
@@ -372,6 +373,7 @@
         cursor: pointer;
         user-select: none;
         color: #060E1D;
+        z-index: 9999999999999999999;
     }    
 
     #streamWidth {
