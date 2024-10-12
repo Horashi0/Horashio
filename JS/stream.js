@@ -632,7 +632,7 @@ function volume() {
             var videoDiv = document.getElementById(videoId);
             if(videoDiv) {
                 var iframe = videoDiv.querySelector("iframe");
-                iframe.onload = () => {
+                if(iframe) {
                     iframe.contentWindow.postMessage('{"event":"command","func":"mute","method":"setVolume","value":0}', '*');                    
                 }
             }
@@ -649,7 +649,7 @@ function volume() {
             var videoDiv = document.getElementById(videoId);
             if(videoDiv) {
                 var iframe = videoDiv.querySelector("iframe");
-                iframe.onload = () => {
+                if(iframe) {
                     iframe.contentWindow.postMessage('{"event":"command","func":"unMute","method":"setVolume","value":100}', '*');
                 }
             }
